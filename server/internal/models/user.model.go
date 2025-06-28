@@ -25,9 +25,10 @@ func (user *User) Validate() error {
 		return errors.New("email is missing")
 	} else if user.Password == "" {
 		return errors.New("password is missing")
-	} else {
-		return nil
+	} else if len(user.Password) < 8 {
+		return errors.New("password is too short")
 	}
+	return nil
 }
 
 func (user *User) LoginValidate() error {
