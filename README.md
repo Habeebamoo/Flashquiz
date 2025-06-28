@@ -22,4 +22,4 @@ A customizable Quiz application that brings trivia and joy
 ## 📦 Installation
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/Habeebamoo/flashquiz.git
+   git clone https://github.com/Habeebamoo/Flashquiz.git
