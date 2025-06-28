@@ -11,7 +11,7 @@ A customizable Quiz application that brings trivia and joy
 ## 🛠️ Tech Stack
 - Frontend: ReactJS
 - Backend: Go
-- Database: PostgresSQL
+- Database: PostgreSQL
 
 <div align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="50" alt="React Logo" style="margin: 0 10px;" />
