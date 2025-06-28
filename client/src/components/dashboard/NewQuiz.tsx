@@ -6,7 +6,8 @@ const NewQuiz = () => {
     category: "science",
     time: 0.5,
     difficulty: "easy",
-    amount: 10
+    amount: 10,
+    type: "multiple"
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -86,6 +87,20 @@ const NewQuiz = () => {
               onChange={(e) => setForm(prev => ({...prev, amount: Number(e.target.value)}))}
               required
             />
+          </div>
+          <div className="p-2">
+            <label htmlFor="type" className="font-inter dark:text-white">Option Type</label>
+            <select 
+              name="type" 
+              id="type"
+              value={form.type}
+              className="input dark:border-[#555] dark:bg-white"
+              onChange={(e) => setForm(prev => ({...prev, type: e.target.value}))}
+              required
+            >
+              <option value="boolean">True or False</option>
+              <option value="multiple">4 Options</option>
+            </select>
           </div>
           <div className="p-2">
             <button className="w-full mt-1 btn-black">Start Quiz</button>

@@ -4,6 +4,7 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 	"encoding/json"
+	"flashquiz-server/internal/models"
 	"fmt"
 	"net/http"
 	"os"
@@ -176,4 +177,35 @@ func ResendVerification(userEmail, userName, token string) error {
 	}
 
 	return nil
+}
+
+func GetUrl(qForm *models.QForm) string {
+	var category int
+
+	amount := qForm.Amount
+	difficulty := qForm.Difficulty
+	qType := qForm.Type
+
+	switch qForm.Category {
+	case "Science":
+		category = 17
+	case "Arts":
+		category = 25
+	case "History":
+		category = 23
+	case "Tech":
+		category = 18
+	case "Sports":
+		category = 21
+	case "Anime":
+		category = 31
+	case "Mythology":
+		category = 20
+	default:
+		category = 17
+	}
+
+	url := fmt.Sprintf("https://opentdb.com/api.php?amount=%d&category=%d&difficulty=%s&type=%s", amount, category, difficulty, qType)
+
+	return url
 }

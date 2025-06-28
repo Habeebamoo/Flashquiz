@@ -17,7 +17,7 @@ func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file, ok in prod")
 	}
-	
+
 	database.Initialize()
 	defer database.DB.Close()
 
@@ -33,6 +33,9 @@ func main() {
 	router.HandleFunc("/api/user/resend-verification", handlers.ResendEmailVerification)
 	router.HandleFunc("/api/user/forgot-password", handlers.ForgotPassword)
 	router.HandleFunc("/api/user/reset-password", handlers.ResetPassword)
+
+	//quiz routes
+	router.HandleFunc("/api/quiz", handlers.FetchQuiz)
 
 	handler := middlewares.CORS(middlewares.Recovery(middlewares.AuthMiddleware(router)))
 
