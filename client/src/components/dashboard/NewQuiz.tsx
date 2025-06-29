@@ -1,7 +1,8 @@
 import React, { useState } from "react"
-import { useUser } from "../../context/UserContext"
 
 const NewQuiz = () => {
+  const [loading, setLoading] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<boolean>(false)
   const [form, setForm] = useState({
     category: "science",
     time: 0.5,
@@ -12,6 +13,8 @@ const NewQuiz = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setLoading(true)
+    setErrorMessage(false)
     const token = JSON.parse(localStorage.getItem("flashquiz-web-token")!)
 
     try {
@@ -23,12 +26,20 @@ const NewQuiz = () => {
         },
         body: JSON.stringify(form)
       })
+      const response = await res.json()
 
-      const response = await res.body
-
-      console.log(response)
+      if (res.ok) {
+        localStorage.setItem("flashquiz-quizzes", JSON.stringify(response.results))
+        setTimeout(() => {
+          window.location.href = "/quiz"
+        }, 1000)
+      } else {
+        setErrorMessage(true)
+      }
     } catch (err) {
-      console.log(err)
+      setErrorMessage(true)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -118,8 +129,9 @@ const NewQuiz = () => {
               <option value="multiple">4 Options</option>
             </select>
           </div>
+          {errorMessage && <p className="my-2 text-red-500 font-open text-center">Something went wrong</p>}
           <div className="p-2">
-            <button className="w-full mt-1 btn-black">Start Quiz</button>
+            <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40">{loading ? "---" : "Start Quiz"}</button>
           </div>
         </form>
       </section>

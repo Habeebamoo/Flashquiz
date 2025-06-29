@@ -3,24 +3,24 @@ package models
 import "errors"
 
 type QForm struct {
-	Category   string  `json:"category"`
-	Time       float64 `json:"time"`
-	Difficulty string  `json:"difficulty"`
-	Amount     int     `json:"amount"`
-	Type       string  `json:"type"`
+	Category    string  `json:"category"`
+	Time        float64 `json:"time"`
+	Difficulty  string  `json:"difficulty"`
+	Amount      int     `json:"amount"`
+	Type        string  `json:"type"`
 }
 
 type TriviaResponse struct {
-	ResponseCode  int  `json:"response_code"`
-	Results  []TriviaResult  `json:"results"`
+	ResponseCode  int             `json:"response_code"`
+	Results       []TriviaResult  `json:"results"`
 }
 
 type TriviaResult struct {
-	Type  string  `json:"type"`
-	Difficulty  string  `json:"difficulty"`
-	Category  string  `json:"category"`
-	Question  string  `json:"question"`
-	CorrectAnswer  string  `json:"correct_answer"`
+	Type              string    `json:"type"`
+	Difficulty        string    `json:"difficulty"`
+	Category          string    `json:"category"`
+	Question          string    `json:"question"`
+	CorrectAnswer     string    `json:"correct_answer"`
 	IncorrectAnswers  []string  `json:"incorrect_answers"`
 }
 
