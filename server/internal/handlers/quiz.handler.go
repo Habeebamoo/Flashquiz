@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"flashquiz-server/internal/models"
 	"flashquiz-server/internal/service"
+	"io"
 	"net/http"
 )
 
@@ -38,6 +39,15 @@ func FetchQuiz(w http.ResponseWriter, r *http.Request) {
 	}
 	defer resp.Body.Close()
 
+	body, _ := io.ReadAll(resp.Body)
+
+	var triviaResponse models.TriviaResponse
+	if err := json.Unmarshal(body, &triviaResponse); err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		ErrorResponse(w, "Internal Server Error")
+		return
+	}
+
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]any{"data": resp})
+	json.NewEncoder(w).Encode(triviaResponse)
 }

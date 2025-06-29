@@ -10,10 +10,26 @@ const NewQuiz = () => {
     type: "multiple"
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(form)
-    window.location.href = "/quiz"
+    const token = JSON.parse(localStorage.getItem("flashquiz-web-token")!)
+
+    try {
+      const res = await fetch("https://flashquiz-backend.onrender.com/api/quiz", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(form)
+      })
+
+      const response = await res.body
+
+      console.log(response)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (

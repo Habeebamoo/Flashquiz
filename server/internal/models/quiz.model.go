@@ -10,6 +10,20 @@ type QForm struct {
 	Type       string  `json:"type"`
 }
 
+type TriviaResponse struct {
+	ResponseCode  int  `json:"response_code"`
+	Results  []TriviaResult  `json:"results"`
+}
+
+type TriviaResult struct {
+	Type  string  `json:"type"`
+	Difficulty  string  `json:"difficulty"`
+	Category  string  `json:"category"`
+	Question  string  `json:"question"`
+	CorrectAnswer  string  `json:"correct_answer"`
+	IncorrectAnswers  []string  `json:"incorrect_answers"`
+}
+
 func (qForm *QForm) Validate() error {
 	if qForm.Category == "" {
 		return errors.New("category was not provided")
