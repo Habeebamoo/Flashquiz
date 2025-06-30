@@ -9,6 +9,9 @@ const Page = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
+    setStatus("")
+    setMessage("")
+    
     if (email === "") {
       setStatus("error")
       setMessage("Email is empty")

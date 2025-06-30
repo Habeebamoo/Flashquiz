@@ -214,7 +214,7 @@ func ForgotPassword(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//adds the token to the database
-	_, err = database.DB.Exec("INSERT INTO tokens (user_id, token, expires_at) VALUES ($1, $2)", userId, token, time.Now().Add(24*time.Hour))
+	_, err = database.DB.Exec("INSERT INTO tokens (user_id, token, expires_at) VALUES ($1, $2, $3)", userId, token, time.Now().Add(24*time.Hour))
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		ErrorResponse(w, "Internal Server Error")
