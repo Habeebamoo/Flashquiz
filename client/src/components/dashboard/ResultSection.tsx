@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar"
 import "react-circular-progressbar/dist/styles.css"
-import { FaBook, FaCheckCircle, FaHome, FaRegClock, FaSpinner } from "react-icons/fa"
+import { FaCheckCircle, FaHome, FaRegClock, FaSpinner } from "react-icons/fa"
 import { MdCancel } from "react-icons/md"
 import Loading from "../Loading"
 import { useNavigate } from "react-router-dom"
@@ -26,10 +26,6 @@ const ResultSection = () => {
 
   const toHome = () => {
     window.location.href = "/dashboard"
-  }
-
-  const toInfo = () => {
-    window.location.href = "/dashboard/info"
   }
 
   const themeText = (): string => {
@@ -112,7 +108,7 @@ const ResultSection = () => {
               <FaSpinner className="mr-2" />
               Retry
             </button>
-            <button className="btn-white sm:ml-2 max-sm:w-full mt-2 flex-center">
+            <button onClick={toHome} className="btn-white sm:ml-2 max-sm:w-full mt-2 flex-center">
               <FaHome className="mr-2" />
               <span>Dashboard</span>
             </button>
