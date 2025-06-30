@@ -18,6 +18,7 @@ import Reviews from "./components/dashboard/Reviews";
 import ErrorScreen from "./components/dashboard/Error";
 import VerifyPage from "./pages/Verify";
 import ForgotPage from "./pages/Forgot";
+import ResetPage from "./pages/ResetPassword";
 
 export default function App() {
   const token = JSON.parse(localStorage.getItem("flashquiz-web-token")!)
@@ -36,6 +37,7 @@ export default function App() {
         <Route path="/quiz" element={token ? <Quiz /> : <Navigate to={"/login"} />} errorElement={<ErrorScreen />} />
         <Route path="/verify" element={<VerifyPage />} />
         <Route path="/forgot" element={<ForgotPage />} />
+        <Route path="/reset-password" element={<ResetPage />} />
         <Route path="*" element={<NotFound />} />
       </>
     )

@@ -58,7 +58,7 @@ func SendPasswordResetLink(userEmail, userName, token string) error {
 
 	m.SetHeader("From", "flashquizweb@gmail.com")
 	m.SetHeader("To", userEmail)
-	m.SetHeader("Subject", "Forgot Password")
+	m.SetHeader("Subject", "Reset Your Password")
 
 	body := fmt.Sprintf(`
 		<html>
@@ -69,7 +69,7 @@ func SendPasswordResetLink(userEmail, userName, token string) error {
 				<p>We've receive your request to reset your password.</p>
 				<p>To reset your password, click on the link below</p>
 
-				<p><a href="https://flashquizweb.netlify.app/reset-password?token=%s" style="color: white; background-color: #1a73e8; padding: 20px; display: block; text-align: center; font-weight: bold; font-size: 1.2em;">Verify My Email</a></p>
+				<p><a href="https://flashquizweb.netlify.app/reset-password?token=%s" style="color: white; background-color: #1a73e8; padding: 15px; display: block; text-align: center; font-weight: bold; font-size: 1.2em;">Reset Password</a></p>
 
 				<p>If you did not request a password reset, you can safely ignore this email.</p>
 				<p>For security purpose, this link will expire in 1 hour.</p>
