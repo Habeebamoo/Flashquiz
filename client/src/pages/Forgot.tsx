@@ -49,7 +49,9 @@ const Page = () => {
   return (
     <section className="flex-center bg-accentXlight dark:bg-[#111] h-[100vh]">
       <form onSubmit={handleSubmit} className="bg-white dark:bg-[#333] p-3 border-1 border-accentCold dark:border-[#444] rounded-md w-[90%] sm:w-[400px] rounded-md">
-        <div className="p-2">
+        <h1 className="font-inter text-xl text-center">Forgot Password</h1>
+        <p className="text-sm text-secondary text-center mb-4">Input your email address to proceed to your account revovery</p>
+        <div className="mb-1">
             <label htmlFor="email" className="font-inter dark:text-white">Email</label>
             <input 
               type="email" 
@@ -66,7 +68,7 @@ const Page = () => {
               {message}
             </div>
           }
-          <div className="p-2">
+          <div className="mt-1">
             <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40">{loading ? "---" : "Submit"}</button>
           </div>
       </form>
