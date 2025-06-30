@@ -37,15 +37,15 @@ const Page = () => {
       <section className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 w-[95%] mx-auto">
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
           <h2 className="font-inter text-sm text-thinBlack dark:text-white">Quiz Completed</h2>
-          <p className="text-2xl font-bold">4</p>
+          <p className="text-2xl font-bold">0</p>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
           <h2 className="font-inter text-sm text-thinBlack dark:text-white">Average Score</h2>
-          <p className="text-2xl font-bold">78%</p>
+          <p className="text-2xl font-bold">0%</p>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
           <h2 className="font-inter text-sm text-thinBlack dark:text-white">Current Rank</h2>
-          <p className="text-2xl font-open font-bold">Quiz Master</p>
+          <p className="text-2xl font-open font-bold">Noob</p>
         </div>
       </section>
 
