@@ -26,7 +26,7 @@ const Page = () => {
 
     try {
       const res = await fetch(`https://flashquiz-backend.onrender.com/api/user/reset-password?token=${token}`, {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json"
         }, 
@@ -93,7 +93,7 @@ const Page = () => {
           <div className="mt-3">
             <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40">{loading ? "---" : "Submit"}</button>
           </div>
-          <p onClick={() => window.location.href = "/login"} className="text-sm text-secondary text-center mt-4">
+          <p onClick={() => window.location.href = "/login"} className="text-sm text-blue-500 font-inter text-center mt-4">
             Back to Login
           </p>
       </form>
