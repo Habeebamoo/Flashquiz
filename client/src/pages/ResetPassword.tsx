@@ -13,6 +13,7 @@ const Page = () => {
   const token: string | null = searchParams.get("token")
 
   const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
     setMessage("")
     setStatus("")
     setLoading(true)
