@@ -81,7 +81,7 @@ const Page = () => {
               id="c_password" 
               value={form.confirmPassword}
               onChange={(e) => setForm((prev) => ({...prev, confirmPassword: e.target.value}))}
-              className="input]" 
+              className="input" 
               required
             />
           </div>
