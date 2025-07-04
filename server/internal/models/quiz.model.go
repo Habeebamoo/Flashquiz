@@ -1,6 +1,8 @@
 package models
 
-import "errors"
+import (
+	"errors"
+)
 
 type QForm struct {
 	Category    string  `json:"category"`
@@ -8,6 +10,12 @@ type QForm struct {
 	Difficulty  string  `json:"difficulty"`
 	Amount      int     `json:"amount"`
 	Type        string  `json:"type"`
+}
+
+type QResults struct {
+	UserId       string     `json:"userId"`
+	Category     string     `json:"category"`
+	Score        float64    `json:"score"`
 }
 
 type TriviaResponse struct {
@@ -35,6 +43,17 @@ func (qForm *QForm) Validate() error {
 		return errors.New("amount was not provided")
 	} else if qForm.Type == "" {
 		return errors.New("option type was not provided")
+	}
+	return nil
+}
+
+func (qRes *QResults) Validate() error {
+	if qRes.UserId == "" {
+		return errors.New("user id is missing")
+	} else if qRes.Score < 0 {
+		return errors.New("score is missing")
+	} else if qRes.Category == "" {
+		return errors.New("category is missing")
 	}
 	return nil
 }

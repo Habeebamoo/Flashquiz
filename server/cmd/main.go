@@ -36,6 +36,7 @@ func main() {
 
 	//quiz routes
 	router.HandleFunc("/api/quiz", handlers.FetchQuiz)
+	router.HandleFunc("/api/quiz/upload", handlers.UploadQuiz)
 
 	handler := middlewares.CORS(middlewares.Recovery(middlewares.AuthMiddleware(router)))
 
