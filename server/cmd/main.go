@@ -1,12 +1,15 @@
 package main
 
 import (
-	"flashquiz-server/internal/middlewares"
-	"flashquiz-server/internal/handlers"
+	"context"
 	"flashquiz-server/internal/database"
+	"flashquiz-server/internal/middlewares"
+	"flashquiz-server/internal/routes"
 	"log"
 	"net/http"
 	"os"
+	"os/signal"
+	"syscall"
 	"time"
 
 	"github.com/joho/godotenv"
@@ -21,23 +24,7 @@ func main() {
 	database.Initialize()
 	defer database.DB.Close()
 
-	router := http.NewServeMux()
-
-	//auth routes
-	router.HandleFunc("/api/auth/register", handlers.Register)
-	router.HandleFunc("/api/auth/login", handlers.Login)
-
-	//user routes
-	router.HandleFunc("/api/user/me", handlers.GetUser)
-	router.HandleFunc("/api/user/verify", handlers.VerifyUser)
-	router.HandleFunc("/api/user/resend-verification", handlers.ResendEmailVerification)
-	router.HandleFunc("/api/user/forgot-password", handlers.ForgotPassword)
-	router.HandleFunc("/api/user/reset-password", handlers.ResetPassword)
-
-	//quiz routes
-	router.HandleFunc("/api/quiz", handlers.FetchQuiz)
-	router.HandleFunc("/api/quiz/upload", handlers.UploadQuiz)
-
+	router := routes.SetUpRoutes()
 	handler := middlewares.CORS(middlewares.Recovery(middlewares.AuthMiddleware(router)))
 
 	PORT := os.Getenv("PORT")
@@ -55,5 +42,25 @@ func main() {
 
 	log.Println("Connected to Postgres")
 	log.Printf("Server running on port %s\n", PORT)
-	log.Fatal(srv.ListenAndServe())
+
+	go func() {
+		if err := srv.ListenAndServe(); err != nil && err == http.ErrServerClosed {
+			log.Fatal("Server Error", err)
+		}
+	}()
+
+	//Graceful shutdown
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, os.Interrupt, syscall.SIGTERM)
+	<-quit
+
+	log.Println("Shutting down server")
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	if err := srv.Shutdown(ctx); err != nil {
+		log.Fatalf("Server Forced to Shutdown %v\n", err)
+	}
+
+	log.Println("Server exited cleanly")
 }
