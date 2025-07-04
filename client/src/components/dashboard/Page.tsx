@@ -1,10 +1,12 @@
-import { FaTrophy } from "react-icons/fa"
+import { FaDatabase, FaTrophy } from "react-icons/fa"
+import { GrScorecard } from "react-icons/gr"
 import { IoIosArrowForward } from "react-icons/io"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "../../context/UserContext"
 import { capitalize } from "../../utils/format"
 import Modal from "./Modal"
 import { useState } from "react"
+import { GiProgression } from "react-icons/gi"
 
 const Page = () => {
   const [modal, setModal] = useState<boolean>(false)
@@ -35,17 +37,32 @@ const Page = () => {
       </section>
       <div className="flex-center bg-white dark:bg-[#333] dark:text-white p-2 border-1 border-accentCold dark:border-[#444] mt-4 rounded-md w-[95%] mx-auto">Overview</div>
       <section className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 w-[95%] mx-auto">
-        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
-          <h2 className="font-inter text-sm text-thinBlack dark:text-white">Quiz Completed</h2>
-          <p className="text-2xl font-bold">0</p>
+        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
+          <div>
+            <h2 className="font-inter text-sm text-thinBlack dark:text-white">Quiz Completed</h2>
+            <p className="text-2xl font-bold">0</p>
+          </div>
+          <div>
+            <FaDatabase size={20} color="yellow" />
+          </div>
         </div>
-        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
-          <h2 className="font-inter text-sm text-thinBlack dark:text-white">Average Score</h2>
-          <p className="text-2xl font-bold">0%</p>
+        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
+          <div>
+            <h2 className="font-inter text-sm text-thinBlack dark:text-white">Average Score</h2>
+            <p className="text-2xl font-bold">0%</p>
+          </div>
+          <div>
+            <GrScorecard size={20} color="green" />
+          </div>
         </div>
-        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
-          <h2 className="font-inter text-sm text-thinBlack dark:text-white">Current Rank</h2>
-          <p className="text-2xl font-open font-bold">Noob</p>
+        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
+          <div>
+            <h2 className="font-inter text-sm text-thinBlack dark:text-white">Current Rank</h2>
+            <p className="text-2xl font-open font-bold">Noob</p>
+          </div>
+          <div>
+            <GiProgression size={20} color="blue" />
+          </div>
         </div>
       </section>
 
