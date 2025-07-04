@@ -57,31 +57,31 @@ const Page = () => {
   }
 
   return (
-    <section className="flex-center bg-accentXlight dark:bg-[#111] h-[100vh]">
-      <form onSubmit={handleSubmit} className="bg-white dark:bg-[#333] px-4 py-10 border-1 border-accentCold dark:border-[#444] rounded-md w-[90%] sm:w-[400px] rounded-md">
+    <section className="flex-center bg-accentXlight h-[100vh]">
+      <form onSubmit={handleSubmit} className="bg-white px-4 py-10 border-1 border-accentCold rounded-md w-[90%] sm:w-[400px] rounded-md">
         <h1 className="font-inter text-xl text-center">Reset Password</h1>
         <p className="text-sm text-secondary text-center mb-4">Enter a new password in order to reset your account password</p>
         <div className=" mt-1 mb-3">
-            <label htmlFor="password" className="font-inter dark:text-white">New Password</label>
+            <label htmlFor="password" className="font-inter">New Password</label>
             <input 
               type="password" 
               name="password" 
               id="password" 
               value={form.password}
               onChange={(e) => setForm((prev) => ({...prev, password: e.target.value}))}
-              className="input dark:border-[#555] dark:bg-white" 
+              className="input" 
               required
             />
           </div>
         <div className=" mt-1 mb-3">
-            <label htmlFor="c_password" className="font-inter dark:text-white">Confirm Password</label>
+            <label htmlFor="c_password" className="font-inter">Confirm Password</label>
             <input 
               type="password" 
               name="c_password" 
               id="c_password" 
               value={form.confirmPassword}
               onChange={(e) => setForm((prev) => ({...prev, confirmPassword: e.target.value}))}
-              className="input dark:border-[#555] dark:bg-white" 
+              className="input]" 
               required
             />
           </div>
