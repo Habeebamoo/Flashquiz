@@ -92,6 +92,9 @@ const Page = () => {
           <div className="mt-3">
             <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40">{loading ? "---" : "Submit"}</button>
           </div>
+          <p onClick={() => window.location.href = "/login"} className="text-sm text-secondary text-center mt-4">
+            Back to Login
+          </p>
       </form>
     </section>
   )
