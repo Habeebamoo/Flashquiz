@@ -43,7 +43,7 @@ const Page = () => {
             <p className="text-2xl font-bold">0</p>
           </div>
           <div>
-            <FaDatabase size={20} color="yellow" />
+            <FaDatabase size={30} color="orange" />
           </div>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
@@ -52,7 +52,7 @@ const Page = () => {
             <p className="text-2xl font-bold">0%</p>
           </div>
           <div>
-            <GrScorecard size={20} color="green" />
+            <GrScorecard size={30} color="green" />
           </div>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
@@ -61,7 +61,7 @@ const Page = () => {
             <p className="text-2xl font-open font-bold">Noob</p>
           </div>
           <div>
-            <GiProgression size={20} color="blue" />
+            <GiProgression size={30} color="blue" />
           </div>
         </div>
       </section>
