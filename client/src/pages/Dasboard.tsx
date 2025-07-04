@@ -12,7 +12,7 @@ const Dashboard = () => {
   if (loading) return <Loading />
 
   return (
-    <main className="p-2 bg-accentXlight dark:bg-[#111]">
+    <main className="p-2 bg-accentXlight dark:bg-[#222]">
       <Header setNavbar={setNavbar} />
       {navbar && <Navbar setNavbar={setNavbar} />}
       <Outlet />
