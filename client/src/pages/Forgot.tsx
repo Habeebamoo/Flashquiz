@@ -15,6 +15,8 @@ const Page = () => {
     if (email === "") {
       setStatus("error")
       setMessage("Email is empty")
+      setLoading(false)
+      return
     }
 
     try {

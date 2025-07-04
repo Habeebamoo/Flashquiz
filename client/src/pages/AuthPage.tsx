@@ -51,6 +51,7 @@ const AuthPage = () => {
         if ((form.password).length < 8) {
           setStatus("error")
           setMessage("Password must be 8 characters or more")
+          setAuthenticating(false)
           return
         }
         

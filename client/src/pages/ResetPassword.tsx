@@ -20,6 +20,7 @@ const Page = () => {
     if (form.password !== form.confirmPassword) {
       setMessage("Password does not match")
       setStatus("error")
+      setLoading(false)
       return
     }
 
