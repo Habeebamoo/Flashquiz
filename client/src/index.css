@@ -61,7 +61,7 @@
 }
 
 @utility input {
-  @apply w-full border-1 border-accentCold p-2 rounded-md focus:border-accentCold cursor-pointer mt-2;
+  @apply w-full border-1 border-accentCold p-3 rounded-md focus:border-accentCold cursor-pointer mt-2;
 }
 
 .test {

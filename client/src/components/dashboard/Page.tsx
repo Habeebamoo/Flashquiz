@@ -68,15 +68,15 @@ const Page = () => {
 
       <section className="bg-white dark:bg-[#333] dark:text-white p-4 border-1 border-accentCold dark:border-[#444] mt-4 rounded-md w-[95%] mx-auto">
         <h2 className="font-inter text-lg">Level Progress</h2>
-        <p className="text-sm text-secondary dark:text-accentLight">Level 8 - 3240 points</p>
+        <p className="text-sm text-secondary dark:text-accentLight">Level 0 - 0 points</p>
         <div className="text-sm flex-between mt-3">
-          <p>Current: 3240pts</p>
-          <p>Next Level: 4000pts</p>
+          <p>Current: 0pts</p>
+          <p>Next Level: 100pts</p>
         </div>
         <div className="bg-accent mt-2 rounded-full">
-          <div className="p-1 bg-black rounded-full w-[80%]"></div>
+          <div className="p-1 bg-black rounded-full w-[5%]"></div>
         </div>
-        <p className="text-sm text-secondary dark:text-accentLight mt-2">760 points until level 9</p>
+        <p className="text-sm text-secondary dark:text-accentLight mt-2">100 points until level 1</p>
       </section>
 
       <section className="p-4 mb-2 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] w-[95%] mx-auto mt-[20px]">

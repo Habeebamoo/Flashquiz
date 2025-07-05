@@ -1,17 +1,9 @@
 import { MdCancel } from "react-icons/md"
 import { FaMoon, FaSun } from "react-icons/fa"
 import { useTheme } from "../../context/ThemeContext";
-import { useUser } from "../../context/UserContext";
-import { useState } from "react";
-import Modal from "./Modal";
 
 const Navbar = ({ setNavbar }: { setNavbar: React.Dispatch<React.SetStateAction<boolean>> }) => {
-  const [modal, setModal] = useState<boolean>(false)
-  const [status, setStatus] = useState<"success" | "error" | "">("")
-  const [modalHead, setModalHead] = useState<string>("")
-  const [modalBody, setModalBody] = useState<string>("")
   const { theme, setTheme } = useTheme() 
-  const { user } = useUser()
   const iconTheme = theme === "light" ? "black" : "white";
 
   const handleTheme = () => {
@@ -22,44 +14,13 @@ const Navbar = ({ setNavbar }: { setNavbar: React.Dispatch<React.SetStateAction<
     }
   }
 
-  const sendVerifcation =  async () => {
-    try {
-      const res = await fetch("https://flashquiz-backend.onrender.com/api/user/resend-verification", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          UserId: user.userId
-        })
-      })
-
-      const response = await res.json()
-
-      if (res.ok) {
-        setStatus("success")
-        setModalHead(response.message)
-        setModalBody("Check your email for a verification link")
-      } else {
-        setStatus("error")
-        setModalHead(response.error)
-        setModalBody("")
-      }
-    } catch (err: any) {
-      setStatus("error")
-      setModalHead("Unknown Error")
-      setModalBody("Something went wrong")
-    }
-  }
-
   return (
     <section className="fixed top-0 left-0 right-0 bottom-0 bg-modal">
-      {modal && <Modal type={status} head={modalHead} body={modalBody} showModal={setModal} />}
       <div className="bg-white p-2 dark:bg-[#333] max-sm:hidden sm:w-[27%] md:w-[25%] lg:w-[15%] h-[100vh] relative">
        <div className="flex-end mb-6">
           <MdCancel color={iconTheme} size={20} onClick={() => setNavbar(false)} className="cursor-pointer" />
         </div>
-        <p onClick={sendVerifcation} className="p-2 font-open dark:text-white cursor-pointer">Verify My Account</p>
+        <p className="p-2 font-open dark:text-white cursor-pointer">Verify My Account</p>
         <div onClick={handleTheme} className="p-2 mt-5 flex-start cursor-pointer absolute bottom-0">
           {theme == "light" ? <FaMoon color={iconTheme} /> : <FaSun color={iconTheme} />}
           <span className="ml-2 dark:text-white font-open">{theme === "light" ? "Light" : "Dark"}</span>

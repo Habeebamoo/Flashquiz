@@ -19,7 +19,7 @@ export default function Footer() {
         <h2>FlashQuiz</h2>
       </div>
       <p className="text-secondary text-sm font-open py-2">The ultimate destination for trivia and fun.</p>
-      <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-3 p-1">
+      <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 p-1">
         <div>
           <h3 className="mb-2 font-inter">Legal</h3>
           <small>Terms of use</small>
@@ -35,22 +35,7 @@ export default function Footer() {
           <small>Events</small>
           <small>Subscriptions</small>
         </div>
-        <div className="">
-          <h3 className="text-center mb-3 text-lg font-inter">Subscribe to our newsletter</h3>
-          <form className="flex-center px-4 relative p-2">
-            <input 
-              type="email" 
-              name="subscriber-email"
-              placeholder="example@gmail.com"
-              className="p-2 border-1 border-secondary rounded-full w-full pl-3"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <div onClick={submitForm} className="absolute right-[25px] bg-black rounded-full h-7 w-7 flex-center cursor-pointer">
-              <FaArrowUp color="white" />
-            </div>
-          </form>
-        </div>
+        
       </div>
     </footer>
   )

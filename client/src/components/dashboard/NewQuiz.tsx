@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Circles } from "react-loader-spinner"
 
 const NewQuiz = () => {
   const [loading, setLoading] = useState<boolean>(false)
@@ -131,7 +132,7 @@ const NewQuiz = () => {
           </div>
           {errorMessage && <p className="my-2 text-red-500 font-open text-center">Something went wrong</p>}
           <div className="p-2">
-            <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40">{loading ? "---" : "Start Quiz"}</button>
+            <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40">{loading ? <Circles height={20} width={20} color="#fff" visible={true} /> : "Start Quiz"}</button>
           </div>
         </form>
       </section>
