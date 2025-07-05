@@ -105,7 +105,7 @@ const AuthPage = () => {
       <section className="h-[100vh] flex-center">
         <form onSubmit={handleAuth} className="bg-white border-1 border-accentCold px-4 py-10 rounded-md w-[90%] sm:w-[400px] mx-auto">
           <h1 className="font-inter text-2xl text-center">{isLogin ? "Welcome Back" : "Create Your Free Account"}</h1>
-          <p className="text-sm text-secondary text-center mb-10">
+          <p className="text-sm text-secondary mt-1 text-center mb-10">
             {isLogin ? "Sign in back to your account to continue" : "Sign up for a free account today"}
           </p>
           {!isLogin && <div className="mb-3">
