@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Circles } from "react-loader-spinner"
+import { ClipLoader } from "react-spinners"
 import { useSearchParams } from "react-router-dom"
 
 const Page = () => {
@@ -92,7 +92,7 @@ const Page = () => {
             </div>
           }
           <div className="mt-3">
-            <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40">{loading ? <Circles height={20} width={20} color="#fff" visible={true} /> : "Submit"}</button>
+            <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40">{loading ? <ClipLoader size={16} color="#fff" /> : "Submit"}</button>
           </div>
           <p onClick={() => window.location.href = "/login"} className="text-sm cursor-pointer text-blue-500 font-inter text-center mt-4">
             Back to Login

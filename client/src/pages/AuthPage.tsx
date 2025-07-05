@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Header from "../components/Header"
 import { useNavigate } from "react-router-dom"
-import { Circles } from "react-loader-spinner"
+import { ClipLoader } from "react-spinners"
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true)
@@ -96,8 +96,8 @@ const AuthPage = () => {
     setIsLogin(!isLogin)
   }
 
-  const loginText = authenticating ? <Circles height={20} width={20} color="#fff" visible={true} /> : "Login"
-  const registerText = authenticating ? <Circles height={20} width={20} color="#fff" visible={true} /> : "Sign Up"
+  const loginText = authenticating ? <ClipLoader size={16} color="#fff" /> : "Login"
+  const registerText = authenticating ? <ClipLoader size={16} color="#fff" /> : "Sign Up"
 
   return (
     <main className="bg-accentXlight h-[100vh]">

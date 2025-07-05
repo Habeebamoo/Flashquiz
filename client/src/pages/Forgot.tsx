@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Circles } from "react-loader-spinner"
+import { ClipLoader } from "react-spinners"
 
 const Page = () => {
   const [email, setEmail] = useState<string>("")
@@ -75,7 +75,7 @@ const Page = () => {
             </div>
           }
           <div className="mt-3">
-            <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40">{loading ? <Circles height={20} width={20} color="#fff" visible={true} /> : "Submit"}</button>
+            <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40">{loading ? <ClipLoader size={16} color="#fff" /> : "Submit"}</button>
           </div>
       </form>
     </section>
