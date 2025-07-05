@@ -68,7 +68,6 @@ const Page = () => {
                 className="pl-11 input dark:border-[#555] dark:bg-white" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email address"
                 required
               />
               <CiMail size={30} color="rgb(177, 170, 170)" className="absolute top-[18px] left-[10px]" />
