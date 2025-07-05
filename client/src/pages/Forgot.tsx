@@ -65,6 +65,7 @@ const Page = () => {
               id="email" 
               className="input dark:border-[#555] dark:bg-white" 
               value={email}
+              placeholder="e.g example@mail.com"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -75,7 +76,7 @@ const Page = () => {
             </div>
           }
           <div className="mt-3">
-            <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40 flex-center">{loading ? <ClipLoader size={22} color="#fff" /> : "Submit"}</button>
+            <button disabled={loading} className="w-full mt-1 py-3 btn-black disabled:cursor-not-allowed disabled:opacity-40 flex-center">{loading ? <ClipLoader size={22} color="#fff" /> : "Submit"}</button>
           </div>
       </form>
     </section>

@@ -71,6 +71,7 @@ const Page = () => {
               value={form.password}
               onChange={(e) => setForm((prev) => ({...prev, password: e.target.value}))}
               className="input" 
+              placeholder="Must be at least 8 charcters"
               required
             />
           </div>
@@ -83,6 +84,7 @@ const Page = () => {
               value={form.confirmPassword}
               onChange={(e) => setForm((prev) => ({...prev, confirmPassword: e.target.value}))}
               className="input" 
+              placeholder="Must be at least 8 charcters"
               required
             />
           </div>
@@ -92,7 +94,7 @@ const Page = () => {
             </div>
           }
           <div className="mt-3">
-            <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40 flex-center">{loading ? <ClipLoader size={22} color="#fff" /> : "Submit"}</button>
+            <button disabled={loading} className="w-full mt-1 py-3 btn-black disabled:cursor-not-allowed disabled:opacity-40 flex-center">{loading ? <ClipLoader size={22} color="#fff" /> : "Submit"}</button>
           </div>
           <p onClick={() => window.location.href = "/login"} className="text-sm cursor-pointer text-blue-500 font-inter text-center mt-4">
             Back to Login

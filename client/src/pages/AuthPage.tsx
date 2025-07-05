@@ -113,6 +113,7 @@ const AuthPage = () => {
             <input 
               type="text" 
               id="name" 
+              placeholder="Enter your Fullname"
               className="p-3 border-1 border-accent rounded-md block w-full mt-2" 
               value={form.name}
               onChange={(e) => setForm(prev => ({...prev, name: e.target.value}))}
@@ -126,6 +127,7 @@ const AuthPage = () => {
               id="email" 
               className="p-3 border-1 border-accent rounded-md block w-full mt-2" 
               value={form.email}
+              placeholder="e.g example@mail.com"
               onChange={(e) => setForm(prev => ({...prev, email: e.target.value}))}
               required 
             />
@@ -137,6 +139,7 @@ const AuthPage = () => {
               id="password" 
               className="p-3 border-1 border-accent rounded-md block w-full mt-2" 
               value={form.password}
+              placeholder="Must be at least 8 characters"
               onChange={(e) => setForm(prev => ({...prev, password: e.target.value}))}
               required 
             />
@@ -149,7 +152,7 @@ const AuthPage = () => {
           }
           <button 
             type="submit"
-            className="btn-black mt-2 max-sm:w-full disabled:cursor-not-allowed disabled:opacity-40 flex-center" 
+            className=" py-3 btn-black mt-2 max-sm:w-full disabled:cursor-not-allowed disabled:opacity-40 flex-center" 
             disabled={authenticating}
             >
               {isLogin ? loginText : registerText}

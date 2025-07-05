@@ -132,7 +132,7 @@ const NewQuiz = () => {
           </div>
           {errorMessage && <p className="my-2 text-red-500 font-open text-center">Something went wrong</p>}
           <div className="p-2">
-            <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40 flex-center">{loading ? <ClipLoader size={22} color="#fff" /> : "Start Quiz"}</button>
+            <button disabled={loading} className="w-full mt-1 py-3 btn-black disabled:cursor-not-allowed disabled:opacity-40 flex-center">{loading ? <ClipLoader size={22} color="#fff" /> : "Start Quiz"}</button>
           </div>
         </form>
       </section>

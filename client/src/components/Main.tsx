@@ -47,7 +47,7 @@ const Main = () => {
           <div className="px-3 py-4 shadow-sm rounded-md">
             <FaRankingStar size={40} color="green" />
             <h2 className="text-xl font-inter my-2">Leaderboard</h2>
-            <p className="text-secondary mb-3">Earn a spot as part of the leading candidates among the top users</p>
+            <p className="text-secondary mb-3">Earn a spot as part of the leading candidates among top users</p>
             <p onClick={() => navigate("/login")} className="flex-start text-sm text-secondary cursor-pointer">
               Learn more
               <span className="ml-1"><FaArrowRight size={10} /></span>
