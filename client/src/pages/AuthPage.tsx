@@ -149,7 +149,7 @@ const AuthPage = () => {
           }
           <button 
             type="submit"
-            className="btn-black mt-2 max-sm:w-full disabled:cursor-not-allowed disabled:opacity-40" 
+            className="btn-black mt-2 max-sm:w-full disabled:cursor-not-allowed disabled:opacity-40 flex-center" 
             disabled={authenticating}
             >
               {isLogin ? loginText : registerText}
