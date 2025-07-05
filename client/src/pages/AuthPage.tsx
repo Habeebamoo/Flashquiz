@@ -119,7 +119,6 @@ const AuthPage = () => {
                 className="pr-3 py-3 pl-11 border-1 border-accent rounded-md block w-full mt-2" 
                 value={form.name}
                 onChange={(e) => setForm(prev => ({...prev, name: e.target.value}))}
-                placeholder="Enter your name"
                 required 
               />
               <CiUser size={30} color="rgb(177, 170, 170)" className="absolute top-[9px] left-[9px]" />
@@ -134,7 +133,6 @@ const AuthPage = () => {
                 className="pr-3 py-3 pl-11 border-1 border-accent rounded-md block w-full mt-2" 
                 value={form.email}
                 onChange={(e) => setForm(prev => ({...prev, email: e.target.value}))}
-                placeholder="e.g example@yourmail.com"
                 required 
               />
               <CiMail size={30} color="rgb(177, 170, 170)" className="absolute top-[9px] left-[10px]" />
@@ -149,7 +147,6 @@ const AuthPage = () => {
                 className="pr-3 py-3 pl-12 border-1 border-accent rounded-md block w-full mt-2" 
                 value={form.password}
                 onChange={(e) => setForm(prev => ({...prev, password: e.target.value}))}
-                placeholder="Must be 8 characters or more"
                 required 
               />
               <CiLock size={30} color="rgb(177, 170, 170)" className="absolute top-[9px] left-[11px]" />
