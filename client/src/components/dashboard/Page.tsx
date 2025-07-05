@@ -74,7 +74,7 @@ const Page = () => {
           <p>Next Level: 100pts</p>
         </div>
         <div className="bg-accent mt-2 rounded-full">
-          <div className="p-1 bg-black rounded-full w-[5%]"></div>
+          <div className="p-1 bg-black rounded-full w-[1%]"></div>
         </div>
         <p className="text-sm text-secondary dark:text-accentLight mt-2">100 points until level 1</p>
       </section>

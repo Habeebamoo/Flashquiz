@@ -96,8 +96,8 @@ const AuthPage = () => {
     setIsLogin(!isLogin)
   }
 
-  const loginText = authenticating ? <ClipLoader size={20} color="#fff" /> : "Login"
-  const registerText = authenticating ? <ClipLoader size={20} color="#fff" /> : "Sign Up"
+  const loginText = authenticating ? <ClipLoader size={22} color="#fff" /> : "Login"
+  const registerText = authenticating ? <ClipLoader size={22} color="#fff" /> : "Sign Up"
 
   return (
     <main className="bg-accentXlight h-[100vh]">
