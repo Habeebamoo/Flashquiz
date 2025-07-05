@@ -75,7 +75,7 @@ const Page = () => {
             </div>
           }
           <div className="mt-3">
-            <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40 flex-center">{loading ? <ClipLoader size={16} color="#fff" /> : "Submit"}</button>
+            <button disabled={loading} className="w-full mt-1 btn-black disabled:cursor-not-allowed disabled:opacity-40 flex-center">{loading ? <ClipLoader size={20} color="#fff" /> : "Submit"}</button>
           </div>
       </form>
     </section>
