@@ -1,16 +1,7 @@
-import { useState } from "react";
 import logo from "../assets/logo.png"
-import { FaArrowUp } from "react-icons/fa";
 
 export default function Footer() {
-  const [email, setEmail] = useState<string>("")
-
-  const submitForm = () => {
-    fetch("https://getform.io/f/adrrejpa", {
-      method: "POST",
-      body: JSON.stringify(email)
-    })
-  }
+  const year =  new Date().getFullYear()
 
   return (
     <footer className="p-2 bg-accentXlight border-t-1 border-t-accentCold">
@@ -34,9 +25,12 @@ export default function Footer() {
           <small>Search guide</small>
           <small>Events</small>
           <small>Subscriptions</small>
-        </div>
-        
+        </div>     
       </div>
+      <div className="mt-4">
+        <hr color="rgb(76, 77, 78)" />
+        <p className="mt-4 mb-4 text-center text-secondary text-sm">Copywright {year}. Flashquiz</p>
+      </div> 
     </footer>
   )
 }
