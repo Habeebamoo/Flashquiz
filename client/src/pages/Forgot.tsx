@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { ClipLoader } from "react-spinners"
+import { CiMail } from "react-icons/ci"
 
 const Page = () => {
   const [email, setEmail] = useState<string>("")
@@ -59,15 +60,19 @@ const Page = () => {
         <p className="text-sm text-secondary text-center mb-6 mt-1">Input your email address to proceed to your account revovery</p>
         <div className=" mt-1 mb-3">
             <label htmlFor="email" className="font-inter dark:text-white">Email</label>
-            <input 
-              type="email" 
-              name="email" 
-              id="email" 
-              className="input dark:border-[#555] dark:bg-white" 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <div className="relative">
+              <input 
+                type="email" 
+                name="email" 
+                id="email" 
+                className="pl-11 input dark:border-[#555] dark:bg-white" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Your email address"
+                required
+              />
+              <CiMail size={30} color="rgb(177, 170, 170)" className="absolute top-[18px] left-[10px]" />
+            </div>
           </div>
           {message &&
             <div className={status === "success" ? "success" : "error"}>

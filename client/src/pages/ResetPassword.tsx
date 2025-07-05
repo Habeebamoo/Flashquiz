@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { useSearchParams } from "react-router-dom"
+import { CiLock } from "react-icons/ci"
 
 const Page = () => {
   const [ searchParams ] = useSearchParams()
@@ -64,27 +65,34 @@ const Page = () => {
         <p className="text-sm text-secondary text-center mb-6 mt-1">Enter a new password in order to reset your account password</p>
         <div className=" mt-1 mb-3">
             <label htmlFor="password" className="font-inter">New Password</label>
-            <input 
-              type="password" 
-              name="password" 
-              id="password" 
-              value={form.password}
-              onChange={(e) => setForm((prev) => ({...prev, password: e.target.value}))}
-              className="input" 
-              required
-            />
+            <div className="relative">
+              <input 
+                type="password" 
+                name="password" 
+                id="password" 
+                value={form.password}
+                onChange={(e) => setForm((prev) => ({...prev, password: e.target.value}))}
+                placeholder="Must be 8 characters or more"
+                className="pl-11 input" 
+                required
+              />
+              <CiLock size={30} color="rgb(177, 170, 170)" className="absolute top-[18px] left-[9px]" />
+            </div>
           </div>
         <div className=" mt-1 mb-3">
             <label htmlFor="c_password" className="font-inter">Confirm Password</label>
-            <input 
-              type="password" 
-              name="c_password" 
-              id="c_password" 
-              value={form.confirmPassword}
-              onChange={(e) => setForm((prev) => ({...prev, confirmPassword: e.target.value}))}
-              className="input" 
-              required
-            />
+            <div className="relative">
+              <input 
+                type="password" 
+                name="c_password" 
+                id="c_password" 
+                value={form.confirmPassword}
+                onChange={(e) => setForm((prev) => ({...prev, confirmPassword: e.target.value}))}
+                className="pl-11 input" 
+                required
+              />
+              <CiLock size={30} color="rgb(177, 170, 170)" className="absolute top-[18px] left-[9px]" />
+            </div>
           </div>
           {message &&
             <div className={status === "success" ? "success" : "error"}>

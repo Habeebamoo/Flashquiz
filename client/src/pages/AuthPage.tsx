@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import Header from "../components/Header"
 import { useNavigate } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
+import { CiLock, CiMail, CiUser } from "react-icons/ci"
+import { FaUser } from "react-icons/fa"
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true)
@@ -110,36 +112,48 @@ const AuthPage = () => {
           </p>
           {!isLogin && <div className="mb-3">
             <label htmlFor="name" className="font-inter">Name</label>
-            <input 
-              type="text" 
-              id="name" 
-              className="p-3 border-1 border-accent rounded-md block w-full mt-2" 
-              value={form.name}
-              onChange={(e) => setForm(prev => ({...prev, name: e.target.value}))}
-              required 
-            />
+            <div className="relative">
+              <input 
+                type="text" 
+                id="name" 
+                className="pr-3 py-3 pl-11 border-1 border-accent rounded-md block w-full mt-2" 
+                value={form.name}
+                onChange={(e) => setForm(prev => ({...prev, name: e.target.value}))}
+                placeholder="Enter your name"
+                required 
+              />
+              <CiUser size={30} color="rgb(177, 170, 170)" className="absolute top-[9px] left-[9px]" />
+            </div> 
           </div>}
           <div className="mb-3">
             <label htmlFor="email" className="font-inter">Email</label>
-            <input 
-              type="email" 
-              id="email" 
-              className="p-3 border-1 border-accent rounded-md block w-full mt-2" 
-              value={form.email}
-              onChange={(e) => setForm(prev => ({...prev, email: e.target.value}))}
-              required 
-            />
+            <div className="relative">
+              <input 
+                type="email" 
+                id="email" 
+                className="pr-3 py-3 pl-11 border-1 border-accent rounded-md block w-full mt-2" 
+                value={form.email}
+                onChange={(e) => setForm(prev => ({...prev, email: e.target.value}))}
+                placeholder="e.g example@yourmail.com"
+                required 
+              />
+              <CiMail size={30} color="rgb(177, 170, 170)" className="absolute top-[9px] left-[10px]" />
+            </div>
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="font-inter">Password</label>
-            <input 
-              type="password" 
-              id="password" 
-              className="p-3 border-1 border-accent rounded-md block w-full mt-2" 
-              value={form.password}
-              onChange={(e) => setForm(prev => ({...prev, password: e.target.value}))}
-              required 
-            />
+            <div className="relative">
+              <input 
+                type="password" 
+                id="password" 
+                className="pr-3 py-3 pl-12 border-1 border-accent rounded-md block w-full mt-2" 
+                value={form.password}
+                onChange={(e) => setForm(prev => ({...prev, password: e.target.value}))}
+                placeholder="Must be 8 characters or more"
+                required 
+              />
+              <CiLock size={30} color="rgb(177, 170, 170)" className="absolute top-[9px] left-[11px]" />
+            </div>
           </div>
           {isLogin && <p onClick={() => navigate("/forgot")} className="text-sm my-4 pl-2 cursor-pointer text-blue-500">Forgot Password?</p>}
           {message &&
