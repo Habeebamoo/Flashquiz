@@ -59,7 +59,7 @@ const Page = () => {
 
   return (
     <section className="flex-center bg-accentXlight h-[100vh]">
-      <form onSubmit={handleSubmit} className="bg-white px-4 py-10 border-1 border-accentCold rounded-md w-[90%] sm:w-[400px] rounded-md">
+      <form onSubmit={handleSubmit} className="bg-white px-6 py-10 border-1 border-accentCold rounded-md w-[90%] sm:w-[400px] rounded-md">
         <h1 className="font-inter text-2xl text-center">Reset Password</h1>
         <p className="text-sm text-secondary text-center mb-6 mt-1">Enter a new password in order to reset your account password</p>
         <div className=" mt-1 mb-3">

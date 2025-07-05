@@ -54,7 +54,7 @@ const Page = () => {
 
   return (
     <section className="flex-center bg-accentXlight dark:bg-[#111] h-[100vh]">
-      <form onSubmit={handleSubmit} className="bg-white dark:bg-[#333] px-4 py-10 border-1 border-accentCold dark:border-[#444] rounded-md w-[90%] sm:w-[400px] rounded-md">
+      <form onSubmit={handleSubmit} className="bg-white dark:bg-[#333] px-6 py-10 border-1 border-accentCold dark:border-[#444] rounded-md w-[90%] sm:w-[400px] rounded-md">
         <h1 className="font-inter text-2xl text-center">Forgot Password</h1>
         <p className="text-sm text-secondary text-center mb-6 mt-1">Input your email address to proceed to your account revovery</p>
         <div className=" mt-1 mb-3">
