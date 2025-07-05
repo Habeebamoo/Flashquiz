@@ -71,7 +71,6 @@ const Page = () => {
               value={form.password}
               onChange={(e) => setForm((prev) => ({...prev, password: e.target.value}))}
               className="input" 
-              placeholder="Must be at least 8 charcters"
               required
             />
           </div>
@@ -84,7 +83,6 @@ const Page = () => {
               value={form.confirmPassword}
               onChange={(e) => setForm((prev) => ({...prev, confirmPassword: e.target.value}))}
               className="input" 
-              placeholder="Must be at least 8 charcters"
               required
             />
           </div>

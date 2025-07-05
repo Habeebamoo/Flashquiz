@@ -104,8 +104,8 @@ const AuthPage = () => {
       <Header button={false} />
       <section className="h-[100vh] flex-center">
         <form onSubmit={handleAuth} className="bg-white border-1 border-accentCold px-4 py-10 rounded-md w-[90%] sm:w-[400px] mx-auto">
-          <h1 className="font-inter text-3xl text-center">{isLogin ? "Welcome Back" : "Create Your Free Account"}</h1>
-          <p className="text-sm text-secondary text-center mb-8">
+          <h1 className="font-inter text-2xl text-center">{isLogin ? "Welcome Back" : "Create Your Free Account"}</h1>
+          <p className="text-sm text-secondary text-center mb-10">
             {isLogin ? "Sign in back to your account to continue" : "Sign up for a free account today"}
           </p>
           {!isLogin && <div className="mb-3">
@@ -113,7 +113,6 @@ const AuthPage = () => {
             <input 
               type="text" 
               id="name" 
-              placeholder="Enter your Fullname"
               className="p-3 border-1 border-accent rounded-md block w-full mt-2" 
               value={form.name}
               onChange={(e) => setForm(prev => ({...prev, name: e.target.value}))}
@@ -127,7 +126,6 @@ const AuthPage = () => {
               id="email" 
               className="p-3 border-1 border-accent rounded-md block w-full mt-2" 
               value={form.email}
-              placeholder="e.g example@mail.com"
               onChange={(e) => setForm(prev => ({...prev, email: e.target.value}))}
               required 
             />
@@ -139,7 +137,6 @@ const AuthPage = () => {
               id="password" 
               className="p-3 border-1 border-accent rounded-md block w-full mt-2" 
               value={form.password}
-              placeholder="Must be at least 8 characters"
               onChange={(e) => setForm(prev => ({...prev, password: e.target.value}))}
               required 
             />

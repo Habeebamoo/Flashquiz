@@ -65,7 +65,6 @@ const Page = () => {
               id="email" 
               className="input dark:border-[#555] dark:bg-white" 
               value={email}
-              placeholder="e.g example@mail.com"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
