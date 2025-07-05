@@ -27,7 +27,7 @@ export default function Footer() {
           <small>Subscriptions</small>
         </div>     
       </div>
-      <div className="mt-4">
+      <div className="mt-4 mb-4">
         <hr color="rgb(76, 77, 78)" />
         <p className="mt-4 mb-4 text-center text-secondary text-sm">Copywright {year}. Flashquiz</p>
       </div> 
