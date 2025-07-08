@@ -15,7 +15,7 @@ const QuizSection = () => {
   }
 
   useEffect(() => {
-    localStorage.setItem("flashquiz-quiz-time", JSON.stringify(initTime - 1))
+    localStorage.setItem("flashquiz-quiz-time", JSON.stringify(timeLeft))
   }, [timeLeft])
 
   useEffect(() => {
