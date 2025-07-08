@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/joho/godotenv"
+	"github.com/go-chi/httprate"
 	_ "github.com/lib/pq"
 )
 
@@ -23,7 +24,10 @@ func main() {
 	defer database.DB.Close()
 
 	router := routes.SetUpRoutes()
-	handler := middlewares.CORS(middlewares.Recovery(middlewares.AuthMiddleware(router)))
+	//rate limiter
+	rateLimiter := httprate.LimitByIP(10, 1*time.Minute)
+
+	handler := middlewares.CORS(middlewares.Recovery(middlewares.AuthMiddleware(rateLimiter(router))))
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
