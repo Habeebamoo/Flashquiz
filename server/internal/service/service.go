@@ -118,7 +118,7 @@ func SendPasswordResetLink(userEmail, userName, token string) error {
 	    <a href="https://flashquizweb.netlify.app/reset-password?token=%s" class="btn">Reset Password</a>
 	    <p>If you did not request a password reset, please ignore this email or contact support if you have questions.</p>
 	    <div class="footer">
-	      &copy; %d YourCompany. All rights reserved.
+	      &copy; %d Flashquiz. All rights reserved.
 	    </div>
           </div>
         </body>
