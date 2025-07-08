@@ -6,7 +6,7 @@ const NewQuiz = () => {
   const [errorMessage, setErrorMessage] = useState<boolean>(false)
   const [form, setForm] = useState({
     category: "science",
-    time: 0.5,
+    time: 30,
     difficulty: "easy",
     amount: 10,
     type: "multiple"
