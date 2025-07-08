@@ -12,7 +12,7 @@ export default function Footer() {
       <p className="text-secondary text-sm font-open py-2">The ultimate destination for trivia and fun.</p>
       <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 p-1">
         <div>
-          <h3 className="mb-2 font-inter">Legal</h3>
+          <h3 className="mb-3 font-inter text-xl">Legal</h3>
           <small>Terms of use</small>
           <small>License agreement</small>
           <small>Privacy policy</small>
@@ -20,7 +20,7 @@ export default function Footer() {
           <small>Copywright information</small>
         </div>
         <div>
-          <h3 className="mb-2 font-inter">Support</h3>
+          <h3 className="mb-3 font-inter text-xl">Support</h3>
           <small>FAQ</small>
           <small>Search guide</small>
           <small>Events</small>

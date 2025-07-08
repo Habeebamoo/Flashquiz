@@ -17,10 +17,8 @@ import (
 )
 
 func main() {
-	if err := godotenv.Load(); err != nil {
-		log.Println("No .env file, ok in prod")
-	}
-
+	godotenv.Load()
+	
 	database.Initialize()
 	defer database.DB.Close()
 

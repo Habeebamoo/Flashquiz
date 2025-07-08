@@ -14,7 +14,7 @@
 
 @layer base {
   small {
-    @apply block text-secondary mb-1
+    @apply block text-secondary mb-2
   }
 }
 
