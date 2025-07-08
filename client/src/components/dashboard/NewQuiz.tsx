@@ -31,6 +31,7 @@ const NewQuiz = () => {
 
       if (res.ok) {
         localStorage.setItem("flashquiz-quizzes", JSON.stringify(response.results))
+        localStorage.removeItem("flashquiz-quiz-time")
         localStorage.setItem("flashquiz-quiz-time", JSON.stringify(form.time))
         setTimeout(() => {
           window.location.href = "/quiz"
