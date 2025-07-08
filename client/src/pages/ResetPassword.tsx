@@ -72,7 +72,6 @@ const Page = () => {
                 id="password" 
                 value={form.password}
                 onChange={(e) => setForm((prev) => ({...prev, password: e.target.value}))}
-                placeholder="Must be 8 characters or more"
                 className="pl-11 input" 
                 required
               />
