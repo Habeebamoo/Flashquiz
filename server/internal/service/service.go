@@ -60,29 +60,72 @@ func SendPasswordResetLink(userEmail, userName, token string) error {
 	m.SetHeader("To", userEmail)
 	m.SetHeader("Subject", "Reset Your Password")
 
-	body := fmt.Sprintf(`
-		<html>
-			<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-				<h2 style="color: #1a73e8">FlashQuiz</h2>
-				<p>Hi %s</p>
+	//Email body (HTML)
 
-				<p>We've receive your request to reset your password.</p>
-				<p>To reset your password, click on the link below</p>
+	htmlBody := fmt.Sprintf(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <style>
+	    body {
+	      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	      background-color: #f6f9fc;
+	      margin: 0;
+	      padding: 0;
+	      color: #333;
+	    }
+	    .container {
+	      max-width: 600px;
+	      margin: 40px auto;
+	      background-color: #fff;
+	      padding: 30px;
+	      border-radius: 8px;
+	      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+	    }
+	    h1 {
+	      font-size: 24px;
+	      margin-bottom: 20px;
+	    }
+	    p {
+	      font-size: 16px;
+	      line-height: 1.6;
+	    }
+	    .btn {
+	      display: inline-block;
+	      margin-top: 25px;
+	      padding: 12px 24px;
+	      background-color: #28a745;
+	      color: #ffffff !important;
+	      text-decoration: none;
+	      border-radius: 6px;
+	      font-size: 16px;
+	    }
+	    .footer {
+	      margin-top: 40px;
+	      font-size: 13px;
+	      color: #888;
+	      text-align: center;
+	    }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+	    <h1>Reset Your Password</h1>
+	    <p>Hey there %s</p>
+	    <p>We received a request to reset your password. You can reset it by clicking the button below:</p>
+	    <a href="https://flashquizweb.netlify.app/reset-password?token=%s" class="btn">Reset Password</a>
+	    <p>If you did not request a password reset, please ignore this email or contact support if you have questions.</p>
+	    <div class="footer">
+	      &copy; %d YourCompany. All rights reserved.
+	    </div>
+          </div>
+        </body>
+        </html>
+        `, userName, token, time.Now().Year())
 
-				<p><a href="https://flashquizweb.netlify.app/reset-password?token=%s" style="color: white; background-color: #1a73e8; padding: 15px; display: block; text-align: center; font-weight: bold; font-size: 1.2em;">Reset Password</a></p>
-
-				<p>If you did not request a password reset, you can safely ignore this email.</p>
-				<p>For security purpose, this link will expire in 1 hour.</p>
-				<br>
-				<p>Thank you</p>
-				<br>
-				
-				<p>Best regards,<br>FlashQuiz Team</p>
-			</body>
-		</html>
-	`, userName, token)
-
-	m.SetBody("text/html", body)
+        m.SetBody("text/html", htmlBody)
 
 	d := gomail.NewDialer("smtp.gmail.com", 465, "flashquizweb@gmail.com", os.Getenv("APP_PASSWORD"))
 	d.SSL = true
