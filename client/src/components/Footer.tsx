@@ -1,13 +1,13 @@
 import logo from "../assets/logo.png"
 
 export default function Footer() {
-  const year =  new Date().getFullYear()
+  const year = new Date().getFullYear()
 
   return (
     <footer className="p-2 bg-accentXlight border-t-1 border-t-accentCold">
       <div className="flex-start mt-3">
         <img src={logo} className="h-[30px]" />
-        <h2 className="text-xl ml-1">FlashQuiz</h2>
+        <h2 className="text-xl ml-1 font-inter">FlashQuiz</h2>
       </div>
       <p className="text-secondary text-sm font-open py-2">The ultimate destination for trivia and fun.</p>
       <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 p-1">
@@ -28,7 +28,9 @@ export default function Footer() {
         </div>     
       </div>
       <div className="mt-10 mb-10">
-        <hr color="rgb(76, 77, 78)" />
+        <div className="px-4">
+          <hr color="rgb(76, 77, 78)" />
+        </div>
         <p className="mt-8 mb-8 text-center text-secondary text-sm">Copywright &copy; {year}. Flashquiz</p>
       </div> 
     </footer>
