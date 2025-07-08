@@ -3,15 +3,20 @@ import { FaStopwatch } from "react-icons/fa"
 import { useTheme } from "../../context/ThemeContext"
 
 const QuizSection = () => {
-  const [timeLeft, setTimeLeft] = useState<number>(() => {
+  const [initTime, setInitTime] = useState<number>(() => {
     const storedSeconds: string | null = localStorage.getItem("flashquiz-quiz-time")!
     return JSON.parse(storedSeconds) ? Number(JSON.parse(storedSeconds)) * 60 : 30
-  })
+  }) 
+  const [timeLeft, setTimeLeft] = useState<number>(initTime)
   const { theme } = useTheme()
 
   if (timeLeft <= 0) {
     window.location.href = "/dashboard/result";
   }
+
+  useEffect(() => {
+    localStorage.setItem("flashquiz-quiz-time", JSON.stringify(initTime - 1))
+  }, [timeLeft])
 
   useEffect(() => {
     if (timeLeft <= 0) return;
