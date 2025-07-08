@@ -15,10 +15,6 @@ const QuizSection = () => {
   }
 
   useEffect(() => {
-    localStorage.setItem("flashquiz-quiz-time", JSON.stringify(initTime - 1))
-  }, [timeLeft])
-
-  useEffect(() => {
     if (timeLeft <= 0) return;
 
     const interval = setInterval(() => {
