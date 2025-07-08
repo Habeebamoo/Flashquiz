@@ -5,7 +5,7 @@ import { useTheme } from "../../context/ThemeContext"
 const QuizSection = () => {
   const [initTime, setInitTime] = useState<number>(() => {
     const storedSeconds: string | null = localStorage.getItem("flashquiz-quiz-time")!
-    return JSON.parse(storedSeconds) ? Number(JSON.parse(storedSeconds)) * 60 : 30
+    return JSON.parse(storedSeconds) ? Number(JSON.parse(storedSeconds)) : 30
   }) 
   const [timeLeft, setTimeLeft] = useState<number>(initTime)
   const { theme } = useTheme()
