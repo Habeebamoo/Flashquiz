@@ -28,6 +28,22 @@
   }
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@layer utilities {
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+  }
+}
+
 @utility flex-center {
   @apply flex justify-center items-center;
 }

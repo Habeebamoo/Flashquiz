@@ -3,13 +3,14 @@ import Header from "../components/Header"
 import { useNavigate } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import { CiLock, CiMail, CiUser } from "react-icons/ci"
-import { FaUser } from "react-icons/fa"
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6"
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true)
   const [authenticating, setAuthenticating] = useState<boolean>(false)
   const [status, setStatus] = useState<"error" | "success" | "">("")
   const [message, setMessage] = useState<string>("")
+  const [showPassword, setShowPassword] = useState<boolean>(false)
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -100,6 +101,20 @@ const AuthPage = () => {
 
   const loginText = authenticating ? <ClipLoader size={22} color="#fff" /> : "Login"
   const registerText = authenticating ? <ClipLoader size={22} color="#fff" /> : "Sign Up"
+  const icon = showPassword ? 
+  <FaRegEyeSlash 
+    size={20} 
+    color="rgb(177, 170, 170)" 
+     
+  /> : 
+  <FaRegEye 
+    size={20} 
+    color="rgb(177, 170, 170)" 
+  /> 
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword)
+  }
 
   return (
     <main className="bg-accentXlight h-[100vh]">
@@ -142,7 +157,7 @@ const AuthPage = () => {
             <label htmlFor="password" className="font-inter">Password</label>
             <div className="relative">
               <input 
-                type="password" 
+                type={showPassword ? "text" : "password"} 
                 id="password" 
                 className="pr-3 py-3 pl-12 border-1 border-accent rounded-md block w-full mt-2" 
                 value={form.password}
@@ -150,6 +165,7 @@ const AuthPage = () => {
                 required 
               />
               <CiLock size={30} color="rgb(177, 170, 170)" className="absolute top-[9px] left-[11px]" />
+              <div className="cursor-pointer absolute top-[16px] right-[11px]" onClick={togglePassword}>{icon}</div>
             </div>
           </div>
           {isLogin && <p onClick={() => navigate("/forgot")} className="text-sm my-4 pl-2 cursor-pointer text-blue-500">Forgot Password?</p>}

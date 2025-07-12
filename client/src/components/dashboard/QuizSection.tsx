@@ -4,16 +4,34 @@ import { useTheme } from "../../context/ThemeContext"
 import QuizBox from "./QuizBox"
 
 const QuizSection = () => {
-  const [initTime, setInitTime] = useState<number>(() => {
+  const [initTime] = useState<number>(() => {
     const storedSeconds: string | null = localStorage.getItem("flashquiz-quiz-time")!
-    return JSON.parse(storedSeconds) ? Number(JSON.parse(storedSeconds)) : 30
+    return storedSeconds ? Number(JSON.parse(storedSeconds)) : 30
   }) 
+  const [quizArray] = useState<any[]>(() => {
+    const storedArray = localStorage.getItem("flashquiz-quizzes")!
+    return storedArray ? JSON.parse(storedArray) : []
+  })
+  const [currentIndex, setCurrentIndex] = useState<number>(() => {
+    const str: string = "flashquiz-quiz-index"
+    return localStorage.getItem(str)! ? JSON.parse(localStorage.getItem(str)!) : 0
+  })
+  const [optionAttempts, setOptionAttempts] = useState<string[]>([])
   const [timeLeft, setTimeLeft] = useState<number>(initTime)
   const { theme } = useTheme()
+  const currentQuiz = quizArray[currentIndex]
 
   if (timeLeft <= 0) {
     window.location.href = "/dashboard/result";
   }
+
+  useEffect(() => {
+    localStorage.setItem("flashquiz-option-attempts", JSON.stringify(optionAttempts))
+  }, [optionAttempts])
+
+  useEffect(() => {
+    localStorage.setItem("flashquiz-quiz-index", JSON.stringify(currentIndex))
+  }, [currentIndex])
 
   useEffect(() => {
     localStorage.setItem("flashquiz-quiz-time", JSON.stringify(timeLeft))
@@ -36,7 +54,7 @@ const QuizSection = () => {
   }, [timeLeft])
 
   const handleNext = () => {
-    window.location.href = "/dashboard/result"
+    setCurrentIndex(currentIndex + 1)
   }
 
   const formatTime = (seconds: number) => {
@@ -54,9 +72,9 @@ const QuizSection = () => {
           <FaStopwatch color={iconTheme} />
           <p className="text-lg dark:text-white font-open ml-1">{formatTime(timeLeft)}</p>
         </div>
-        <QuizBox />
+        <QuizBox currentQuiz={currentQuiz} currentIndex={currentIndex} />
         <div className="flex-between w-[90%] mx-auto">
-          <p className="text-sm text-secodary dark:text-white">Question 1 of 20</p>
+          <p className="text-sm text-secodary dark:text-white">Question {currentIndex + 1} of {quizArray.length}</p>
           <button onClick={handleNext} className="btn-black">Next</button>
         </div>
       </div>
