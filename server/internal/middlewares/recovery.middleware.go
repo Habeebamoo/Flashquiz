@@ -10,7 +10,7 @@ func Recovery(next http.Handler) http.Handler {
 		defer func() {
 			if r := recover(); r != nil {
 				log.Println("Recovered from panic", r)
-				http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+				JsonResponse(w, http.StatusInternalServerError, "Internal Server Error")
 			}
 		}()
 

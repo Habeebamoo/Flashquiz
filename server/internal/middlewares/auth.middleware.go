@@ -4,14 +4,19 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"strings"
 	"os"
+	"strings"
 
+	"flashquiz-server/internal/service"
 	"github.com/golang-jwt/jwt/v5"
 )
 
 type contextKey string
 var UserIdKey contextKey = "userID"
+
+var (
+	JsonResponse = service.JsonResponse
+)
 
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
@@ -22,12 +27,12 @@ func AuthMiddleware(next http.Handler) http.Handler {
 
 		authHeader := r.Header.Get("Authorization")
 		if authHeader == "" {
-			http.Error(w, "Authorization Header Missing", http.StatusUnauthorized)
+			JsonResponse(w, http.StatusUnauthorized, "Authorization Header Missing")
 			return
 		}
 
 		if !strings.HasPrefix(authHeader, "Bearer ") {
-			http.Error(w, "Invalid Authoriation Format", http.StatusUnauthorized)
+			JsonResponse(w, http.StatusUnauthorized, "Invalid Authorization Header Format")
 			return
 		}
 
@@ -42,19 +47,19 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		})
 
 		if err != nil || !token.Valid {
-			http.Error(w, "Invalid Token", http.StatusUnauthorized)
+			JsonResponse(w, http.StatusUnauthorized, "Invalid Token")
 			return
 		}
 
 		claims, ok := token.Claims.(jwt.MapClaims)
 		if !ok {
-			http.Error(w, "Cannot verify token", http.StatusUnauthorized)
+			JsonResponse(w, http.StatusUnauthorized, "Cannot Verify Token")
 			return
 		}
 
 		userId, ok := claims["userId"].(string)
 		if !ok {
-			http.Error(w, "Invalid user id in token", http.StatusUnauthorized)
+			JsonResponse(w, http.StatusUnauthorized, "Invalid Token Payload")
 			return
 		}
 

@@ -12,6 +12,7 @@ import (
 )
 
 var (
+	JsonResponse = service.JsonResponse
 	ErrorResponse = service.ErrorResponse
 	Hash = service.Hash
 	ResendVerification = service.ResendVerification
@@ -101,8 +102,7 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]string{"message": "Email Verification Successful"})
+	JsonResponse(w, http.StatusOK, "Email Verification Successful")
 }
 
 func ResendEmailVerification(w http.ResponseWriter, r *http.Request) {
@@ -162,9 +162,7 @@ func ResendEmailVerification(w http.ResponseWriter, r *http.Request) {
 
 	//sends email message
 	go ResendVerification(email, name, token)
-
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]string{"message": "Verification Link Sent"})
+	JsonResponse(w, http.StatusOK, "Verification Email Sent")
 }
 
 func ForgotPassword(w http.ResponseWriter, r *http.Request) {
@@ -204,8 +202,7 @@ func ForgotPassword(w http.ResponseWriter, r *http.Request) {
 	err = database.DB.QueryRow("SELECT name, user_id FROM users WHERE email = $1", user.Email).Scan(&name, &userId)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			w.WriteHeader(http.StatusOK)
-			json.NewEncoder(w).Encode(map[string]string{"message": "You will receive a reset link if the email is regisered"})
+			JsonResponse(w, http.StatusOK, "You will receive a reset link if the email is regisered")
 			return
 		}
 		w.WriteHeader(http.StatusInternalServerError)
@@ -222,9 +219,7 @@ func ForgotPassword(w http.ResponseWriter, r *http.Request) {
 	}
 
 	go SendPasswordResetLink(user.Email, name, token)
-
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]string{"message": "You will receive a reset link if the email is regisered"})
+	JsonResponse(w, http.StatusOK, "You will receive a reset link if the email is regisered")
 }
 
 func ResetPassword(w http.ResponseWriter, r *http.Request) {
@@ -288,6 +283,5 @@ func ResetPassword(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]string{"message": "Password Updated Successfully"})
+	JsonResponse(w, http.StatusOK, "Password Updated Successfully")
 }

@@ -76,9 +76,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	go service.SendVerification(u.Email, u.Name, token)
-
-	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(map[string]string{"message": "Account Created"})
+	service.JsonResponse(w, http.StatusCreated, "Account Created")
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {

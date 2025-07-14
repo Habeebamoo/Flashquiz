@@ -82,6 +82,5 @@ func UploadQuiz(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(map[string]string{"message": "Quiz Uploaded"})
+	service.JsonResponse(w, http.StatusCreated, "Quiz Uploaded")
 }
