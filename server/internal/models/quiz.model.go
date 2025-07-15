@@ -16,6 +16,7 @@ type QResults struct {
 	UserId       string     `json:"userId"`
 	Category     string     `json:"category"`
 	Score        float64    `json:"score"`
+	Points       float64    `json:"points"`
 }
 
 type TriviaResponse struct {
@@ -54,6 +55,8 @@ func (qRes *QResults) Validate() error {
 		return errors.New("score is missing")
 	} else if qRes.Category == "" {
 		return errors.New("category is missing")
+	} else if qRes.Points < 0 {
+		return errors.New("points is missing")
 	}
 	return nil
 }

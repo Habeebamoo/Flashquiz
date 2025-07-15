@@ -62,6 +62,7 @@ func UploadQuiz(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	//validates quiz request
 	quizResult := &models.QResults{}
 	if err := json.NewDecoder(r.Body).Decode(&quizResult); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -75,11 +76,57 @@ func UploadQuiz(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	//update quizzes table
 	_, err := database.DB.Exec("INSERT INTO quizzes (user_id, category, score, completed_at) VALUES ($1, $2, $3, $4)", quizResult.UserId, quizResult.Category, quizResult.Score, time.Now())
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		ErrorResponse(w, "Internal Server Error")
 		return
+	}
+
+	var totalScore float64
+	var scores []float64
+	var totalPoints float64
+
+	//get all scores
+	rows, err := database.DB.Query("SELECT score FROM quizzes WHERE user_id = $1", quizResult.UserId)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		ErrorResponse(w, "Internal Server Error")
+		return
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var score float64
+		if err := rows.Scan(&score); err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			ErrorResponse(w, "Internal Server Error")
+			return
+		}
+		scores = append(scores, score)
+	}
+
+	//calculate avergae score
+	for _, score := range scores {
+		totalScore += score
+	}
+	averageScore := totalScore / len(scores)
+
+	//update and get points
+	if err := database.DB.QueryRow("UPDATE records SET points = points + $1 WHERE user_id = $2 RETURNING points", quizResult.Points, quizResult.UserId).Scan(&totalPoints); err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		ErrorResponse(w, "Internal Server Error")
+		return
+	}
+
+	newRank := service.GetRank(totalPoints)
+
+	//update records table
+	if _, err := database.DB.Exec("UPDATE records SET quiz_completed = quiz_completed + 1, avg_score = $1, rank = $2 WHERE user_id = $3", averageScore, newRank, quizResult.UserId); err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		ErrorResponse(w, "Internal Server Error")
+		return		
 	}
 
 	service.JsonResponse(w, http.StatusCreated, "Quiz Uploaded")

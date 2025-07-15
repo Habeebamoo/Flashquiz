@@ -10,7 +10,6 @@ var DB *sql.DB
 
 func Initialize() {
 	var err error
-
 	connStr := os.Getenv("DATABASE_URL")
 
 	DB, err = sql.Open("postgres", connStr)

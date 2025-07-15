@@ -75,7 +75,9 @@ const QuizSection = () => {
         <QuizBox currentQuiz={currentQuiz} currentIndex={currentIndex} />
         <div className="flex-between w-[90%] mx-auto">
           <p className="text-sm text-secodary dark:text-white">Question {currentIndex + 1} of {quizArray.length}</p>
-          <button onClick={handleNext} className="btn-black">Next</button>
+          <button onClick={handleNext} className="btn-black">
+            {currentIndex + 1 == quizArray.length ? "Finish" : "Next"}
+          </button>
         </div>
       </div>
     </main>
