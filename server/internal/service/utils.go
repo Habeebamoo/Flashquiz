@@ -75,7 +75,7 @@ func GetUrl(qForm *models.QForm) string {
 	return url
 }
 
-func GetRank(pts float64) string {
+func GetRank(pts int) string {
 	var rank string
 
 	if pts > 5000 {

@@ -84,9 +84,9 @@ func UploadQuiz(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var totalScore float64
-	var scores []float64
-	var totalPoints float64
+	var totalScore int
+	var scores []int
+	var totalPoints int
 
 	//get all scores
 	rows, err := database.DB.Query("SELECT score FROM quizzes WHERE user_id = $1", quizResult.UserId)
@@ -98,7 +98,7 @@ func UploadQuiz(w http.ResponseWriter, r *http.Request) {
 	defer rows.Close()
 
 	for rows.Next() {
-		var score float64
+		var score int
 		if err := rows.Scan(&score); err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			ErrorResponse(w, "Internal Server Error")

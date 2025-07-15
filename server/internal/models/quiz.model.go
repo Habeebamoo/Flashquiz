@@ -6,7 +6,6 @@ import (
 
 type QForm struct {
 	Category    string  `json:"category"`
-	Time        float64 `json:"time"`
 	Difficulty  string  `json:"difficulty"`
 	Amount      int     `json:"amount"`
 	Type        string  `json:"type"`
@@ -15,8 +14,8 @@ type QForm struct {
 type QResults struct {
 	UserId       string     `json:"userId"`
 	Category     string     `json:"category"`
-	Score        float64    `json:"score"`
-	Points       float64    `json:"points"`
+	Score        int        `json:"score"`
+	Points       int        `json:"points"`
 }
 
 type TriviaResponse struct {
@@ -36,8 +35,6 @@ type TriviaResult struct {
 func (qForm *QForm) Validate() error {
 	if qForm.Category == "" {
 		return errors.New("category was not provided")
-	} else if qForm.Time < 0.5 {
-		return errors.New("time was not provided")
 	} else if qForm.Difficulty == "" {
 		return errors.New("difficuly was not provided")
 	} else if qForm.Amount < 10 {

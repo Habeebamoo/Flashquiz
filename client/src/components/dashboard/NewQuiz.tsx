@@ -25,7 +25,12 @@ const NewQuiz = () => {
           "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(form)
+        body: JSON.stringify({
+          category: form.category,
+          amount: form.amount,
+          difficulty: form.difficulty,
+          type: form.type
+        })
       })
       const response = await res.json()
 
