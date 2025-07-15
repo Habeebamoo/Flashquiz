@@ -31,7 +31,7 @@ export default function Footer() {
         <div className="px-4">
           <hr color="rgb(76, 77, 78)" />
         </div>
-        <p className="mt-8 mb-8 text-center text-secondary text-sm">Copywright &copy; {year}. Flashquiz</p>
+        <p className="mt-8 mb-8 text-center text-secondary text-sm">&copy; {year} Flashquiz. All right reserved</p>
       </div> 
     </footer>
   )
