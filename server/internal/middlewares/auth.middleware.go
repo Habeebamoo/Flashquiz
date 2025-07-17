@@ -15,9 +15,28 @@ type contextKey string
 var UserIdKey contextKey = "userID"
 
 var (
-	JsonResponse = service.JsonResponse
+	ErrorResponse = service.ErrorResponse
 )
 
+//middleware for API key
+func RequireAPIKey(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		apiKey := r.Header.Get("X-API-KEY")
+		if apiKey == "" {
+			ErrorResponse(w, http.StatusUnauthorized, "Missing API Key")
+			return
+		}
+
+		if apiKey != os.Getenv("X_API_KEY") {
+			ErrorResponse(w, http.StatusUnauthorized, "Invalid API Key")
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
+}
+
+//middleware for JWT Auth
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
 		if r.URL.Path == "/api/auth/login" || r.URL.Path == "/api/auth/register" || r.URL.Path == "/api/user/verify" || r.URL.Path == "/api/user/forgot-password" || r.URL.Path == "/api/user/reset-password" || r.URL.Path == "/api" {
@@ -27,12 +46,12 @@ func AuthMiddleware(next http.Handler) http.Handler {
 
 		authHeader := r.Header.Get("Authorization")
 		if authHeader == "" {
-			JsonResponse(w, http.StatusUnauthorized, "Authorization Header Missing")
+			ErrorResponse(w, http.StatusUnauthorized, "Authorization Header Missing")
 			return
 		}
 
 		if !strings.HasPrefix(authHeader, "Bearer ") {
-			JsonResponse(w, http.StatusUnauthorized, "Invalid Authorization Header Format")
+			ErrorResponse(w, http.StatusUnauthorized, "Invalid Authorization Header Format")
 			return
 		}
 
@@ -47,19 +66,19 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		})
 
 		if err != nil || !token.Valid {
-			JsonResponse(w, http.StatusUnauthorized, "Invalid Token")
+			ErrorResponse(w, http.StatusUnauthorized, "Invalid Token")
 			return
 		}
 
 		claims, ok := token.Claims.(jwt.MapClaims)
 		if !ok {
-			JsonResponse(w, http.StatusUnauthorized, "Cannot Verify Token")
+			ErrorResponse(w, http.StatusUnauthorized, "Cannot Verify Token")
 			return
 		}
 
 		userId, ok := claims["userId"].(string)
 		if !ok {
-			JsonResponse(w, http.StatusUnauthorized, "Invalid Token Payload")
+			ErrorResponse(w, http.StatusUnauthorized, "Invalid Token Payload")
 			return
 		}
 

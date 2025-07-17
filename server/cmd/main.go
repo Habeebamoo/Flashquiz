@@ -2,9 +2,6 @@ package main
 
 import (
 	"context"
-	"flashquiz-server/internal/database"
-	"flashquiz-server/internal/middlewares"
-	"flashquiz-server/internal/routes"
 	"log"
 	"net/http"
 	"os"
@@ -12,6 +9,9 @@ import (
 	"syscall"
 	"time"
 
+	"flashquiz-server/internal/database"
+	"flashquiz-server/internal/middlewares"
+	"flashquiz-server/internal/routes"
 	"github.com/joho/godotenv"
 	"github.com/go-chi/httprate"
 	_ "github.com/lib/pq"
@@ -19,15 +19,15 @@ import (
 
 func main() {
 	godotenv.Load()
-	
 	database.Initialize()
 	defer database.DB.Close()
 
 	router := routes.SetUpRoutes()
+
 	//rate limiter
 	rateLimiter := httprate.LimitByIP(10, 1*time.Minute)
 
-	handler := middlewares.CORS(middlewares.Recovery(middlewares.AuthMiddleware(rateLimiter(router))))
+	handler := middlewares.CORS(middlewares.RequireAPIKey(middlewares.Recovery(middlewares.AuthMiddleware(rateLimiter(router)))))
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
@@ -61,7 +61,7 @@ func main() {
 	defer cancel()
 
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatalf("Server Forced to Shutdown %v\n", err)
+		log.Fatalf("Server Failed to Shutdown %v\n", err)
 	}
 
 	log.Println("Server exited cleanly")
