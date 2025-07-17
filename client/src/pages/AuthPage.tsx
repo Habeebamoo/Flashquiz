@@ -25,11 +25,12 @@ const AuthPage = () => {
     setStatus("")
 
     try {
-      if(isLogin) {
+      if (isLogin) {
         const res = await fetch("https://flashquiz-backend.onrender.com/api/auth/login", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "X-API-KEY": import.meta.env.VITE_X_API_KEY,
           },
           body: JSON.stringify({
             email: form.email,
@@ -58,11 +59,12 @@ const AuthPage = () => {
           setAuthenticating(false)
           return
         }
-        
+
         const res = await fetch("https://flashquiz-backend.onrender.com/api/auth/register", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "X-API-KEY": import.meta.env.VITE_X_API_KEY,
           },
           body: JSON.stringify({
             name: form.name,
@@ -82,12 +84,12 @@ const AuthPage = () => {
         }
       }
     } catch (err: any) {
-        setStatus("error")
-        if (!err.response) {
-          setMessage("No Internet Connection")
-        } else {
-          setMessage("Something went wrong.")  
-        }
+      setStatus("error")
+      if (!err.response) {
+        setMessage("No Internet Connection")
+      } else {
+        setMessage("Something went wrong.")
+      }
     } finally {
       setAuthenticating(false)
     }
@@ -101,16 +103,16 @@ const AuthPage = () => {
 
   const loginText = authenticating ? <ClipLoader size={22} color="#fff" /> : "Login"
   const registerText = authenticating ? <ClipLoader size={22} color="#fff" /> : "Sign Up"
-  const icon = showPassword ? 
-  <FaRegEyeSlash 
-    size={20} 
-    color="rgb(177, 170, 170)" 
-     
-  /> : 
-  <FaRegEye 
-    size={20} 
-    color="rgb(177, 170, 170)" 
-  /> 
+  const icon = showPassword ?
+    <FaRegEyeSlash
+      size={20}
+      color="rgb(177, 170, 170)"
+
+    /> :
+    <FaRegEye
+      size={20}
+      color="rgb(177, 170, 170)"
+    />
 
   const togglePassword = () => {
     setShowPassword(!showPassword)
@@ -128,27 +130,27 @@ const AuthPage = () => {
           {!isLogin && <div className="mb-3">
             <label htmlFor="name" className="font-inter">Name</label>
             <div className="relative">
-              <input 
-                type="text" 
-                id="name" 
-                className="pr-3 py-3 pl-11 border-1 border-accent rounded-md block w-full mt-2" 
+              <input
+                type="text"
+                id="name"
+                className="pr-3 py-3 pl-11 border-1 border-accent rounded-md block w-full mt-2"
                 value={form.name}
-                onChange={(e) => setForm(prev => ({...prev, name: e.target.value}))}
-                required 
+                onChange={(e) => setForm(prev => ({ ...prev, name: e.target.value }))}
+                required
               />
               <CiUser size={30} color="rgb(177, 170, 170)" className="absolute top-[9px] left-[9px]" />
-            </div> 
+            </div>
           </div>}
           <div className="mb-3">
             <label htmlFor="email" className="font-inter">Email</label>
             <div className="relative">
-              <input 
-                type="email" 
-                id="email" 
-                className="pr-3 py-3 pl-11 border-1 border-accent rounded-md block w-full mt-2" 
+              <input
+                type="email"
+                id="email"
+                className="pr-3 py-3 pl-11 border-1 border-accent rounded-md block w-full mt-2"
                 value={form.email}
-                onChange={(e) => setForm(prev => ({...prev, email: e.target.value}))}
-                required 
+                onChange={(e) => setForm(prev => ({ ...prev, email: e.target.value }))}
+                required
               />
               <CiMail size={30} color="rgb(177, 170, 170)" className="absolute top-[9px] left-[10px]" />
             </div>
@@ -156,13 +158,13 @@ const AuthPage = () => {
           <div className="mb-3">
             <label htmlFor="password" className="font-inter">Password</label>
             <div className="relative">
-              <input 
-                type={showPassword ? "text" : "password"} 
-                id="password" 
-                className="pr-3 py-3 pl-12 border-1 border-accent rounded-md block w-full mt-2" 
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="pr-3 py-3 pl-12 border-1 border-accent rounded-md block w-full mt-2"
                 value={form.password}
-                onChange={(e) => setForm(prev => ({...prev, password: e.target.value}))}
-                required 
+                onChange={(e) => setForm(prev => ({ ...prev, password: e.target.value }))}
+                required
               />
               <CiLock size={30} color="rgb(177, 170, 170)" className="absolute top-[9px] left-[11px]" />
               <div className="cursor-pointer absolute top-[16px] right-[11px]" onClick={togglePassword}>{icon}</div>
@@ -174,12 +176,12 @@ const AuthPage = () => {
               {message}
             </div>
           }
-          <button 
+          <button
             type="submit"
-            className=" py-3 btn-black mt-2 max-sm:w-full disabled:cursor-not-allowed disabled:opacity-40 flex-center" 
+            className=" py-3 btn-black mt-2 max-sm:w-full disabled:cursor-not-allowed disabled:opacity-40 flex-center"
             disabled={authenticating}
-            >
-              {isLogin ? loginText : registerText}
+          >
+            {isLogin ? loginText : registerText}
           </button>
 
           <p className="text-sm text-secondary text-center mt-4">

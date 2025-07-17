@@ -12,13 +12,14 @@ import (
 )
 
 type contextKey string
+
 var UserIdKey contextKey = "userID"
 
 var (
 	ErrorResponse = service.ErrorResponse
 )
 
-//middleware for API key
+// middleware for API key
 func RequireAPIKey(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		apiKey := r.Header.Get("X-API-KEY")
@@ -27,7 +28,7 @@ func RequireAPIKey(next http.Handler) http.Handler {
 			return
 		}
 
-		if apiKey != os.Getenv("X_API_KEY") {
+		if apiKey != os.Getenv("API_KEY") {
 			ErrorResponse(w, http.StatusUnauthorized, "Invalid API Key")
 			return
 		}
@@ -36,9 +37,9 @@ func RequireAPIKey(next http.Handler) http.Handler {
 	})
 }
 
-//middleware for JWT Auth
+// middleware for JWT Auth
 func AuthMiddleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/api/auth/login" || r.URL.Path == "/api/auth/register" || r.URL.Path == "/api/user/verify" || r.URL.Path == "/api/user/forgot-password" || r.URL.Path == "/api/user/reset-password" || r.URL.Path == "/api" {
 			next.ServeHTTP(w, r)
 			return

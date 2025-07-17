@@ -23,7 +23,8 @@ const NewQuiz = () => {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "X-API-KEY": import.meta.env.VITE_X_API_KEY,
         },
         body: JSON.stringify({
           category: form.category,
@@ -58,12 +59,12 @@ const NewQuiz = () => {
           <h1 className="text-center font-inter dark:text-white text-lg py-3">Select your Preference</h1>
           <div className="p-2">
             <label htmlFor="category" className="font-inter dark:text-white">Category</label>
-            <select 
-              name="category" 
-              id="category" 
+            <select
+              name="category"
+              id="category"
               className="input dark:border-[#555] dark:bg-white"
               value={form.category}
-              onChange={(e) => setForm(prev => ({...prev, category: e.target.value}))}
+              onChange={(e) => setForm(prev => ({ ...prev, category: e.target.value }))}
               required
             >
               <option value="science">Science</option>
@@ -78,12 +79,12 @@ const NewQuiz = () => {
           </div>
           <div className="p-2">
             <label htmlFor="time" className="font-inter dark:text-white">Time</label>
-            <select 
-              name="time" 
-              id="time" 
+            <select
+              name="time"
+              id="time"
               className="input dark:border-[#555] dark:bg-white"
               value={form.time}
-              onChange={(e) => setForm(prev => ({...prev, time: Number(e.target.value)}))}
+              onChange={(e) => setForm(prev => ({ ...prev, time: Number(e.target.value) }))}
               required
             >
               <option value="30">30 Sec</option>
@@ -96,12 +97,12 @@ const NewQuiz = () => {
           </div>
           <div className="p-2">
             <label htmlFor="difficulty" className="font-inter dark:text-white">Difficulty</label>
-            <select 
-              name="difficulty" 
-              id="difficulty" 
+            <select
+              name="difficulty"
+              id="difficulty"
               className="input dark:border-[#555] dark:bg-white"
               value={form.difficulty}
-              onChange={(e) => setForm(prev => ({...prev, difficulty: e.target.value}))}
+              onChange={(e) => setForm(prev => ({ ...prev, difficulty: e.target.value }))}
               required
             >
               <option value="easy">Easy</option>
@@ -111,26 +112,26 @@ const NewQuiz = () => {
           </div>
           <div className="p-2">
             <label htmlFor="amount" className="font-inter dark:text-white">Amount</label>
-            <input 
-              type="number" 
-              name="amount" 
-              id="amount" 
-              className="input dark:border-[#555] dark:bg-white" 
-              min={10} 
-              max={50} 
+            <input
+              type="number"
+              name="amount"
+              id="amount"
+              className="input dark:border-[#555] dark:bg-white"
+              min={10}
+              max={50}
               value={form.amount}
-              onChange={(e) => setForm(prev => ({...prev, amount: Number(e.target.value)}))}
+              onChange={(e) => setForm(prev => ({ ...prev, amount: Number(e.target.value) }))}
               required
             />
           </div>
           <div className="p-2">
             <label htmlFor="type" className="font-inter dark:text-white">Option Type</label>
-            <select 
-              name="type" 
+            <select
+              name="type"
               id="type"
               value={form.type}
               className="input dark:border-[#555] dark:bg-white"
-              onChange={(e) => setForm(prev => ({...prev, type: e.target.value}))}
+              onChange={(e) => setForm(prev => ({ ...prev, type: e.target.value }))}
               required
             >
               <option value="boolean">True or False</option>

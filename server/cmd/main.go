@@ -12,8 +12,8 @@ import (
 	"flashquiz-server/internal/database"
 	"flashquiz-server/internal/middlewares"
 	"flashquiz-server/internal/routes"
-	"github.com/joho/godotenv"
 	"github.com/go-chi/httprate"
+	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
@@ -27,6 +27,7 @@ func main() {
 	//rate limiter
 	rateLimiter := httprate.LimitByIP(10, 1*time.Minute)
 
+	//middleware chain
 	handler := middlewares.CORS(middlewares.RequireAPIKey(middlewares.Recovery(middlewares.AuthMiddleware(rateLimiter(router)))))
 
 	PORT := os.Getenv("PORT")
@@ -35,11 +36,11 @@ func main() {
 	}
 
 	srv := &http.Server{
-		Addr: ":"+PORT,
-		Handler: handler,
-		ReadTimeout: 5*time.Second,
-		WriteTimeout: 10*time.Second,
-		IdleTimeout: 15*time.Second,
+		Addr:         ":" + PORT,
+		Handler:      handler,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		IdleTimeout:  15 * time.Second,
 	}
 
 	log.Println("Connected to Postgres")

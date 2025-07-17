@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom"
 import { CiLock } from "react-icons/ci"
 
 const Page = () => {
-  const [ searchParams ] = useSearchParams()
+  const [searchParams] = useSearchParams()
   const [message, setMessage] = useState<string>("")
   const [status, setStatus] = useState<"success" | "error" | "">("")
   const [loading, setLoading] = useState<boolean>(false)
@@ -30,8 +30,9 @@ const Page = () => {
       const res = await fetch(`https://flashquiz-backend.onrender.com/api/user/reset-password?token=${token}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json"
-        }, 
+          "Content-Type": "application/json",
+          "X-API-KEY": import.meta.env.VITE_X_API_KEY,
+        },
         body: JSON.stringify({
           password: form.password
         })
@@ -64,45 +65,45 @@ const Page = () => {
         <h1 className="font-inter text-2xl text-center">Reset Password</h1>
         <p className="text-sm text-secondary text-center mb-6 mt-1">Enter a new password in order to reset your account password</p>
         <div className=" mt-1 mb-3">
-            <label htmlFor="password" className="font-inter">New Password</label>
-            <div className="relative">
-              <input 
-                type="password" 
-                name="password" 
-                id="password" 
-                value={form.password}
-                onChange={(e) => setForm((prev) => ({...prev, password: e.target.value}))}
-                className="pl-11 input" 
-                required
-              />
-              <CiLock size={30} color="rgb(177, 170, 170)" className="absolute top-[18px] left-[9px]" />
-            </div>
+          <label htmlFor="password" className="font-inter">New Password</label>
+          <div className="relative">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={form.password}
+              onChange={(e) => setForm((prev) => ({ ...prev, password: e.target.value }))}
+              className="pl-11 input"
+              required
+            />
+            <CiLock size={30} color="rgb(177, 170, 170)" className="absolute top-[18px] left-[9px]" />
           </div>
+        </div>
         <div className=" mt-1 mb-3">
-            <label htmlFor="c_password" className="font-inter">Confirm Password</label>
-            <div className="relative">
-              <input 
-                type="password" 
-                name="c_password" 
-                id="c_password" 
-                value={form.confirmPassword}
-                onChange={(e) => setForm((prev) => ({...prev, confirmPassword: e.target.value}))}
-                className="pl-11 input" 
-                required
-              />
-              <CiLock size={30} color="rgb(177, 170, 170)" className="absolute top-[18px] left-[9px]" />
-            </div>
+          <label htmlFor="c_password" className="font-inter">Confirm Password</label>
+          <div className="relative">
+            <input
+              type="password"
+              name="c_password"
+              id="c_password"
+              value={form.confirmPassword}
+              onChange={(e) => setForm((prev) => ({ ...prev, confirmPassword: e.target.value }))}
+              className="pl-11 input"
+              required
+            />
+            <CiLock size={30} color="rgb(177, 170, 170)" className="absolute top-[18px] left-[9px]" />
           </div>
-          {message &&
-            <div className={status === "success" ? "success" : "error"}>
-              {message}
-            </div>
-          }
-          <div className="mt-3">
-            <button disabled={loading} className="w-full mt-1 py-3 btn-black disabled:cursor-not-allowed disabled:opacity-40 flex-center">{loading ? <ClipLoader size={22} color="#fff" /> : "Submit"}</button>
+        </div>
+        {message &&
+          <div className={status === "success" ? "success" : "error"}>
+            {message}
           </div>
-          <p onClick={() => window.location.href = "/login"} className="text-sm cursor-pointer text-blue-500 font-inter text-center mt-4">
-            Back to Login
+        }
+        <div className="mt-3">
+          <button disabled={loading} className="w-full mt-1 py-3 btn-black disabled:cursor-not-allowed disabled:opacity-40 flex-center">{loading ? <ClipLoader size={22} color="#fff" /> : "Submit"}</button>
+        </div>
+        <p onClick={() => window.location.href = "/login"} className="text-sm cursor-pointer text-blue-500 font-inter text-center mt-4">
+          Back to Login
           </p>
       </form>
     </section>

@@ -12,16 +12,19 @@ const Verify = () => {
   const [searchParams] = useSearchParams()
   const token: string | null = searchParams.get("token")
   const navigate = useNavigate()
-  
+
   useEffect(() => {
     const verifyEmail = async () => {
       setLoading(true)
       setMessage("")
       setSubMessage("")
-      
+
       try {
         const res = await fetch(`https://flashquiz-backend.onrender.com/api/user/verify?token=${token}`, {
           method: "POST",
+          headers: {
+            "X-API-KEY": import.meta.env.VITE_X_API_KEY,
+          }
         })
 
         const response = await res.json()
@@ -51,7 +54,7 @@ const Verify = () => {
     <main className="bg-accentCold flex-center h-[100vh]">
       <div className="bg-white rounded-md max-sm:w-[90%] w-[400px] p-6 flex-center flex-col">
         {status == "success" && <FaCheckCircle color="green" size={50} />}
-        {status == "error" && <MdCancel color="red" size={60} /> }
+        {status == "error" && <MdCancel color="red" size={60} />}
         <h1 className="font-open text-xl mt-3">{message}</h1>
         <p className="text-sm text-center">{subMessage}</p>
         <button onClick={() => navigate("/login")} className="btn-black mt-4">Go Back</button>

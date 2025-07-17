@@ -27,14 +27,15 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "X-API-KEY": import.meta.env.VITE_X_API_KEY,
           }
         })
 
         const response = await res.json()
 
         if (!res.ok) {
-          localStorage.removeItem("flashquiz-web-token")   
+          localStorage.removeItem("flashquiz-web-token")
         } else {
           setUser(response.data)
         }
