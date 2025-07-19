@@ -126,7 +126,7 @@ const AuthPage = () => {
             {isLogin ? "Sign in back to your account to continue" : "Sign up for a free account today"}
           </p>
           {!isLogin && <div className="mb-3">
-            <label htmlFor="name" className="font-inter">Fullname</label>
+            <label htmlFor="name" className="font-inter">Name</label>
             <div className="relative">
               <input
                 type="text"

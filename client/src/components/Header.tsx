@@ -1,18 +1,9 @@
-import { NavLink } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import logo from "../assets/logo.png"
-import { useTheme } from "../context/ThemeContext"
 import { FaArrowRightFromBracket } from "react-icons/fa6"
 
-const Header = ({ button=true }: { button: boolean}) => {
-  const { theme, setTheme } = useTheme()
-
-  const handleTheme = () => {
-    if (theme == "light") {
-      setTheme("dark")
-    } else {
-      setTheme("light")
-    }
-  }
+const Header = () => {
+  const navigate = useNavigate()
 
   return (
     <header className="flex-between bg-white shadow-sm py-3 px-3 fixed top-0 left-0 right-0 z-50">
@@ -20,11 +11,9 @@ const Header = ({ button=true }: { button: boolean}) => {
         <img src={logo} className="h-[30px]" />
         <h1 className="ml-1 text-black">FlashQuiz</h1>
       </div>
-      {button &&
-        <div>
-          <NavLink to={"/login"} className="btn-black"><FaArrowRightFromBracket color="white" size={15} /></NavLink>
-        </div>
-      }
+      <div>
+        <button className="btn-black" onClick={() => navigate("/login")}><FaArrowRightFromBracket /></button>
+      </div>
     </header>
   )
 }
