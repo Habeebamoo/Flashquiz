@@ -112,7 +112,7 @@ const Main = () => {
       <div className="bg-thinBlack text-white py-8 px-4 sm:flex-center flex-col mt-6 flex-center flex-col">
         <h2 className="font-inter text-xl mb-1">Ready to Test Your Knowledge?</h2>
         <p className="text-accentLight mb-4 text-center font-open">Join hundreds of users who challenge themselves daily with our quizzes. Sign up for free and start playing!</p>
-        <button onClick={() => navigate("/login")} className="btn-white">Sign Up Now</button>
+        <button onClick={() => navigate("/login")} className="py-2 px-5 text-black rounded-md cursor-pointer bg-white inline-block">Sign Up Now</button>
       </div>
     </section>
   )
