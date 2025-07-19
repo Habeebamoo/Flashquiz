@@ -9,7 +9,7 @@ export default function Footer() {
         <img src={logo} className="h-[30px]" />
         <h2 className="text-xl ml-1 font-inter">FlashQuiz</h2>
       </div>
-      <p className="text-secondary text-sm font-open py-2 max-sm:text-center">The ultimate destination for trivia and fun.</p>
+      <p className="text-secondary text-sm font-open py-2 max-sm:text-center font-open">The ultimate destination for trivia and fun.</p>
       <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 p-1 max-sm:text-center">
         <div>
           <h3 className="mb-3 font-inter text-xl">Legal</h3>
@@ -31,7 +31,7 @@ export default function Footer() {
         <div className="px-4">
           <div className="h-[0.3px] bg-accentLight"></div>
         </div>
-        <p className="mt-8 mb-8 text-center text-secondary text-sm">&copy; {year} Flashquiz. All right reserved</p>
+        <p className="mt-8 mb-8 text-center text-secondary text-sm font-open">&copy; {year} Flashquiz. All right reserved</p>
       </div> 
     </footer>
   )

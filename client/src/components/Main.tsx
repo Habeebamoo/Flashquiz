@@ -19,12 +19,12 @@ const Main = () => {
     <section>
       <div className="bg-tetiary p-7 flex-center flex-col border-t-1 border-t-accent border-b-1 border-b-accent">
         <h2 className="font-inter text-xl mb-1">Find the Perfect Quiz for You</h2>
-        <p className="text-secondary mb-2">Take quizzes from our collection of quizzes</p>
+        <p className="text-secondary mb-2 font-open">Take quizzes from our collection of quizzes</p>
         <NavLink to={"/login"} className="btn-black">Search</NavLink>
       </div>
       <div>
         <h1 className="text-2xl font-inter text-center mt-6">Features</h1>
-        <p className="text-secondary mb-2 text-center">Satisfy yourself with our enriched features</p>
+        <p className="text-secondary mb-2 text-center font-open">Satisfy yourself with our enriched features</p>
         <div className="p-4 grid grid-cols-1 gap-4 sm:grid-cols-3 w-[90%] mx-auto">
           <div className="px-3 py-4 shadow-sm rounded-md">
             <MdQuiz size={40} color="orange" />
@@ -38,7 +38,7 @@ const Main = () => {
           <div className="px-3 py-4 shadow-sm rounded-md">
             <GiProgression size={40} color="blue" />
             <h2 className="text-xl font-inter my-2">Ranking System</h2>
-            <p className="text-secondary mb-3 text-sm font-open">Move up the ladder from Noob to GrandMaster as you take on our most challenging quiz</p>
+            <p className="text-secondary mb-3 text-sm font-open">Move up the ladder from Noob to Emperal as you take on our most challenging quiz</p>
             <p onClick={() => navigate("/login")} className="flex-start text-sm text-secondary cursor-pointer">
               Learn more
               <span className="ml-1"><FaArrowRight size={10} /></span>
@@ -57,7 +57,7 @@ const Main = () => {
       </div>
       <div>
         <h1 className="text-2xl font-inter text-center mt-6">Featured Quiz</h1>
-        <p className="text-secondary mb-4 text-center">Explore our most popular and trending quiz</p>
+        <p className="text-secondary mb-4 text-center font-open">Explore our most popular and trending quiz</p>
 
         <div className="overflow-hidden whitespace-nowrap w-full max-h-100 p-3">
           <div className="inline-block animate-scroll">
