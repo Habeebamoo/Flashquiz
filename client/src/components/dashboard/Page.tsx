@@ -45,7 +45,7 @@ const Page = () => {
             <p className="text-2xl font-bold">0</p>
           </div>
           <div>
-            <FaDatabase size={30} color="orange" />
+            <FaDatabase size={30} color="rgb(177, 170, 170)" />
           </div>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
@@ -54,7 +54,7 @@ const Page = () => {
             <p className="text-2xl font-bold">0%</p>
           </div>
           <div>
-            <GrScorecard size={30} color="green" />
+            <GrScorecard size={30} color="rgb(177, 170, 170)" />
           </div>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
@@ -63,7 +63,7 @@ const Page = () => {
             <p className="text-2xl font-open font-bold">Noob</p>
           </div>
           <div>
-            <GiProgression size={30} color="blue" />
+            <GiProgression size={30} color="rgb(177, 170, 170)" />
           </div>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
@@ -72,7 +72,7 @@ const Page = () => {
             <p className="text-2xl font-open font-bold">0</p>
           </div>
           <div>
-            <PiCoinsFill size={30} color="orange" />
+            <PiCoinsFill size={30} color="rgb(177, 170, 170)" />
           </div>
         </div>
       </section>
