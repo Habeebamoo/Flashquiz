@@ -58,7 +58,7 @@ func GetUrl(qForm *models.QForm) string {
 		category = 25
 	case "History":
 		category = 23
-	case "Tech":
+	case "Computers":
 		category = 18
 	case "Sports":
 		category = 21
@@ -66,6 +66,8 @@ func GetUrl(qForm *models.QForm) string {
 		category = 31
 	case "Mythology":
 		category = 20
+	case "Politics":
+		category = 24
 	default:
 		category = 17
 	}
