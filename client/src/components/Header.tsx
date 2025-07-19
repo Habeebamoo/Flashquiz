@@ -22,7 +22,7 @@ const Header = ({ button=true }: { button: boolean}) => {
       </div>
       {button &&
         <div>
-          <NavLink to={"/login"} className="btn-black"><FaArrowRightFromBracket color="white" /></NavLink>
+          <NavLink to={"/login"} className="btn-black"><FaArrowRightFromBracket color="white" size={15} /></NavLink>
         </div>
       }
     </header>
