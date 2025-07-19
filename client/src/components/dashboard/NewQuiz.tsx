@@ -1,11 +1,12 @@
 import React, { useState } from "react"
 import { ClipLoader } from "react-spinners"
+import { clearLocalStorage } from "../../utils/utils"
 
 const NewQuiz = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<boolean>(false)
   const [form, setForm] = useState({
-    category: "science",
+    category: "Science",
     time: 30,
     difficulty: "easy",
     amount: 10,
@@ -14,6 +15,7 @@ const NewQuiz = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    clearLocalStorage()
     setLoading(true)
     setErrorMessage(false)
     const token = JSON.parse(localStorage.getItem("flashquiz-web-token")!)
@@ -37,8 +39,9 @@ const NewQuiz = () => {
 
       if (res.ok) {
         localStorage.setItem("flashquiz-quizzes", JSON.stringify(response.results))
-        localStorage.removeItem("flashquiz-quiz-time")
         localStorage.setItem("flashquiz-quiz-time", JSON.stringify(form.time))
+        localStorage.setItem("flashquiz-quiz-amount", JSON.stringify(form.amount))
+        localStorage.setItem("flashquiz-quiz-category", JSON.stringify(form.category))
         setTimeout(() => {
           window.location.href = "/quiz"
         }, 1000)
@@ -54,7 +57,7 @@ const NewQuiz = () => {
 
   return (
     <main>
-      <section className="flex-center bg-accentXlight dark:bg-[#111] h-[100vh]">
+      <section className="flex-center bg-accentXlight dark:bg-[#222] h-[100vh]">
         <form onSubmit={handleSubmit} className="bg-white dark:bg-[#333] p-3 border-1 border-accentCold dark:border-[#444] rounded-md w-[90%] sm:w-[400px] rounded-md">
           <h1 className="text-center font-inter dark:text-white text-lg py-3">Select your Preference</h1>
           <div className="p-2">
@@ -67,14 +70,14 @@ const NewQuiz = () => {
               onChange={(e) => setForm(prev => ({ ...prev, category: e.target.value }))}
               required
             >
-              <option value="science">Science</option>
-              <option value="arts">Arts & Entertainment</option>
-              <option value="anime">Anime & Manga</option>
-              <option value="computers">Tech & Computers</option>
-              <option value="history">History</option>
-              <option value="mythology">Mythology</option>
-              <option value="politics">Politics</option>
-              <option value="sports">Sports</option>
+              <option value="Science">Science</option>
+              <option value="Arts">Arts & Entertainment</option>
+              <option value="Anime">Anime & Manga</option>
+              <option value="Computers">Tech & Computers</option>
+              <option value="History">History</option>
+              <option value="Mythology">Mythology</option>
+              <option value="Politics">Politics</option>
+              <option value="Sports">Sports</option>
             </select>
           </div>
           <div className="p-2">

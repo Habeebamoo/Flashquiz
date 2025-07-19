@@ -10,7 +10,7 @@ export default function Footer() {
         <h2 className="text-xl ml-1 font-inter">FlashQuiz</h2>
       </div>
       <p className="text-secondary text-sm font-open py-2 max-sm:text-center font-open">The ultimate destination for trivia and fun.</p>
-      <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 p-1 max-sm:text-center">
+      <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 p-1 max-sm:text-center max-sm:mt-5">
         <div>
           <h3 className="mb-3 font-inter text-xl">Legal</h3>
           <small>Terms of use</small>

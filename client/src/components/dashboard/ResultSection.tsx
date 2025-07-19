@@ -6,13 +6,22 @@ import { MdCancel } from "react-icons/md"
 import Loading from "../Loading"
 import { useNavigate } from "react-router-dom"
 import { useTheme } from "../../context/ThemeContext"
+import { decodeHtml } from "../../utils/utils"
 
 const ResultSection = () => {
+  const [attempts] = useState<any[]>(() => {
+    const storedArray = localStorage.getItem("flashquiz-option-attempts")!
+    return storedArray ? JSON.parse(storedArray) : []
+  })
   const [percentage, setPercentage] = useState<number>(0)
   const { theme } = useTheme()
-  const target = 90
+  const correctAnswers = JSON.parse(localStorage.getItem("flashquiz-quiz-score")!)
+  const amountOfQuizzes = JSON.parse(localStorage.getItem("flashquiz-quiz-amount")!)
+  const quizCategory = JSON.parse(localStorage.getItem("flashquiz-quiz-category")!)
+  const target = (correctAnswers / amountOfQuizzes) * 100
 
   const navigate = useNavigate()
+  const firstAttempts = attempts.slice(0, 2)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -62,7 +71,7 @@ const ResultSection = () => {
     <section className="mt-[80px]">
       <div className="text-center mt-[50px] mb-5">
         <h1 className="text-3xl font-inter dark:text-white">Quiz Result</h1>
-        <p className="text-secondary dark:text-white">Science</p>        
+        <p className="text-secondary dark:text-white">{quizCategory}</p>        
       </div>
       <div className="">
         <div className="bg-white dark:bg-[#333] rounded-md border-1 border-accentCold dark:border-[#444] p-6 mb-3">
@@ -85,26 +94,19 @@ const ResultSection = () => {
               <p className="text-secondary text-sm dark:text-white">Correct answers</p>
               <div className="flex-start">
                 <FaCheckCircle color="green" />
-                <p className="ml-2 font-inter dark:text-white">17/20</p>
+                <p className="ml-2 font-inter dark:text-white">{correctAnswers}/{amountOfQuizzes}</p>
               </div>
             </div>
             <div>
               <p className="text-secondary text-sm dark:text-white">Incorrect answers</p>
               <div className="flex-start">
                 <MdCancel color="red" size={20} />
-                <p className="ml-2 font-inter dark:text-white">3/20</p>
-              </div>
-            </div>
-            <div>
-              <p className="text-secondary text-sm dark:text-white">Time Taken</p>
-              <div className="flex-start">
-                <FaRegClock color={clockTheme} />
-                <p className="ml-2 font-inter dark:text-white">05:23</p>
+                <p className="ml-2 font-inter dark:text-white">{amountOfQuizzes - correctAnswers}/{amountOfQuizzes}</p>
               </div>
             </div>
           </div>
           <div className="mt-4 sm:flex-start items-center">
-            <button className="btn-black max-sm:w-full mt-2 flex-center">
+            <button onClick={() => navigate("/new")} className="btn-black max-sm:w-full mt-2 flex-center">
               <FaSpinner className="mr-2" />
               Retry
             </button>
@@ -118,36 +120,29 @@ const ResultSection = () => {
         <div className="bg-white dark:bg-[#333] rounded-md border-1 border-accentCold dark:border-[#444] p-6 mb-3">
           <h1 className="font-inter text-xl dark:text-white">Review Incorrect Answers</h1>
           <p className="text-secondary dark:text-white text-small">Learn from your mistakes and improve next time</p>
-          <div className="mt-4">
-            <div className="rounded-md border-1 border-accentCold dark:border-[#555] p-4">
-              <h2 className="font-inter dark:text-white">What is the capital of France</h2>
-              <div className="flex-start mt-2">
-                <MdCancel color="red" size={18} />
-                <p className="text-secondary ml-2 dark:text-accentLight">Your answer</p>
-              </div>
-              <p className="font-inter ml-7 dark:text-white">London</p>
-              <div className="flex-start mt-2">
-                <FaCheckCircle color="green" />
-                <p className="text-secondary ml-2 dark:text-accentLight">Correct answer</p>
-              </div>
-              <p className="font-inter ml-7 dark:text-white">Paris</p>
-            </div>
-          </div>
-          <div className="mt-4">
-            <div className="rounded-md border-1 border-accentCold dark:border-[#555] p-4">
-              <h2 className="font-inter dark:text-white">What is the capital of France</h2>
-              <div className="flex-start mt-2">
-                <MdCancel color="red" size={18} />
-                <p className="text-secondary ml-2 dark:text-accentLight">Your answer</p>
-              </div>
-              <p className="font-inter ml-7 dark:text-white">London</p>
-              <div className="flex-start mt-2">
-                <FaCheckCircle color="green" />
-                <p className="text-secondary ml-2 dark:text-accentLight">Correct answer</p>
-              </div>
-              <p className="font-inter ml-7 dark:text-white">Paris</p>
-            </div>
-          </div>
+          {
+            firstAttempts.map(obj => {
+              return (
+                <>
+                  <div className="mt-4">
+                    <div className="rounded-md border-1 border-accentCold dark:border-[#555] p-4">
+                      <h2 className="font-inter dark:text-white">{decodeHtml(obj.question)}</h2>
+                      <div className="flex-start mt-2">
+                        {obj.yourAnswer !== obj.correctAnswer ? <MdCancel color="red" size={18} /> : <FaCheckCircle color="green" />}
+                        <p className="text-secondary ml-2 dark:text-accentLight">Your answer</p>
+                      </div>
+                      <p className="font-inter ml-7 dark:text-white">{decodeHtml(obj.yourAnswer)}</p>
+                      <div className="flex-start mt-2">
+                        <FaCheckCircle color="green" />
+                        <p className="text-secondary ml-2 dark:text-accentLight">Correct answer</p>
+                      </div>
+                      <p className="font-inter ml-7 dark:text-white">{decodeHtml(obj.correctAnswer)}</p>
+                    </div>
+                  </div>
+                </>
+              )
+            })
+          }
           <button onClick={() => navigate("/dashboard/answers")} className="btn-black max-sm:w-full mt-3">View All</button>
         </div>
       </div>

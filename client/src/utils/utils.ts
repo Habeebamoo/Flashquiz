@@ -17,3 +17,13 @@ export const shuffle = (array : string[]) => {
   }
   return array
 }
+
+export const clearLocalStorage = () => {
+  localStorage.removeItem("flashquiz-quizzes")
+  localStorage.removeItem("flashquiz-option-attempts")
+  localStorage.removeItem("flashquiz-quiz-time")
+  localStorage.removeItem("flashquiz-quiz-index")
+  localStorage.removeItem("flashquiz-quiz-score")
+  localStorage.removeItem("flashquiz-quiz-amount")
+  localStorage.removeItem("flashquiz-quiz-category")
+}

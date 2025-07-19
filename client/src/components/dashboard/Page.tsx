@@ -3,10 +3,11 @@ import { GrScorecard } from "react-icons/gr"
 import { IoIosArrowForward } from "react-icons/io"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "../../context/UserContext"
-import { capitalize } from "../../utils/format"
+import { capitalize, clearLocalStorage } from "../../utils/utils"
 import Modal from "./Modal"
 import { useState } from "react"
 import { GiProgression } from "react-icons/gi"
+import { PiCoinsFill } from "react-icons/pi"
 
 const Page = () => {
   const [modal, setModal] = useState<boolean>(false)
@@ -25,6 +26,7 @@ const Page = () => {
       return
     }
 
+    clearLocalStorage()
     navigate("/new")
   }
 
@@ -36,7 +38,7 @@ const Page = () => {
         <button onClick={startQuiz} className="btn-black dark:btn-white">Start new Quiz</button>
       </section>
       <div className="flex-center bg-white dark:bg-[#333] dark:text-white p-2 border-1 border-accentCold dark:border-[#444] mt-4 rounded-md w-[95%] mx-auto">Overview</div>
-      <section className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 w-[95%] mx-auto">
+      <section className="mt-4 grid grid-cols-1 sm:grid-cols-4 gap-2 w-[95%] mx-auto">
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
           <div>
             <h2 className="font-inter text-sm text-thinBlack dark:text-white">Quiz Completed</h2>
@@ -62,6 +64,15 @@ const Page = () => {
           </div>
           <div>
             <GiProgression size={30} color="blue" />
+          </div>
+        </div>
+        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
+          <div>
+            <h2 className="font-inter text-sm text-thinBlack dark:text-white">Total Points</h2>
+            <p className="text-2xl font-open font-bold">0</p>
+          </div>
+          <div>
+            <PiCoinsFill size={30} color="orange" />
           </div>
         </div>
       </section>
