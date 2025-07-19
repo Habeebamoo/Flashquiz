@@ -13,9 +13,8 @@ const Header = ({ setNavbar }: PropsType) => {
 
   return (
     <header className="flex-between bg-white dark:bg-[#333] shadow-sm py-3 px-3 fixed top-0 left-0 right-0">
-      <div className="flex-start p-1">
+      <div className="p-1">
         <img src={logo} className="h-[30px]" />
-        <h1 className="ml-1 text-black dark:text-white">FlashQuiz</h1>
       </div>
       <div className="cursor-pointer">
         <GiHamburgerMenu onClick={() => setNavbar(true)} size={25} color={iconTheme} />
