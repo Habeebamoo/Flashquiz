@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import Header from "../components/Header"
 import { useNavigate } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import { CiLock, CiMail, CiUser } from "react-icons/ci"
@@ -120,7 +119,6 @@ const AuthPage = () => {
 
   return (
     <main className="bg-accentXlight h-[100vh]">
-      <Header button={false} />
       <section className="h-[100vh] flex-center">
         <form onSubmit={handleAuth} className="bg-white border-1 border-accentCold px-6 py-10 rounded-md w-[90%] sm:w-[400px] mx-auto">
           <h1 className="font-inter text-2xl text-center">{isLogin ? "Welcome Back" : "Create Your Free Account"}</h1>
@@ -128,7 +126,7 @@ const AuthPage = () => {
             {isLogin ? "Sign in back to your account to continue" : "Sign up for a free account today"}
           </p>
           {!isLogin && <div className="mb-3">
-            <label htmlFor="name" className="font-inter">Name</label>
+            <label htmlFor="name" className="font-inter">Fullname</label>
             <div className="relative">
               <input
                 type="text"
