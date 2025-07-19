@@ -5,12 +5,12 @@ export default function Footer() {
 
   return (
     <footer className="p-2 bg-accentXlight border-t-1 border-t-accentCold">
-      <div className="flex-start mt-3">
+      <div className="flex-start mt-3 max-sm:flex-center">
         <img src={logo} className="h-[30px]" />
         <h2 className="text-xl ml-1 font-inter">FlashQuiz</h2>
       </div>
-      <p className="text-secondary text-sm font-open py-2">The ultimate destination for trivia and fun.</p>
-      <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 p-1">
+      <p className="text-secondary text-sm font-open py-2 max-sm:text-center">The ultimate destination for trivia and fun.</p>
+      <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 p-1 max-sm:text-center">
         <div>
           <h3 className="mb-3 font-inter text-xl">Legal</h3>
           <small>Terms of use</small>
@@ -29,7 +29,7 @@ export default function Footer() {
       </div>
       <div className="mt-10 mb-10">
         <div className="px-4">
-          <hr color="rgb(76, 77, 78)" />
+          <div className="h-[0.3px] bg-accentLight"></div>
         </div>
         <p className="mt-8 mb-8 text-center text-secondary text-sm">&copy; {year} Flashquiz. All right reserved</p>
       </div> 
