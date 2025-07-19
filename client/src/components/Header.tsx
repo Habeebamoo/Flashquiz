@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom"
 import logo from "../assets/logo.png"
 import { useTheme } from "../context/ThemeContext"
+import { FaArrowRightFromBracket } from "react-icons/fa6"
 
 const Header = ({ button=true }: { button: boolean}) => {
   const { theme, setTheme } = useTheme()
@@ -21,7 +22,7 @@ const Header = ({ button=true }: { button: boolean}) => {
       </div>
       {button &&
         <div>
-          <NavLink to={"/login"} className="btn-black">Login</NavLink>
+          <NavLink to={"/login"} className="btn-black"><FaArrowRightFromBracket color="white" /></NavLink>
         </div>
       }
     </header>
