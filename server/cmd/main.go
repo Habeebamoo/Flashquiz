@@ -27,8 +27,8 @@ func main() {
 	//rate limiter
 	rateLimiter := httprate.LimitByIP(10, 1*time.Minute)
 
-	//middleware chain
-	handler := middlewares.CORS(middlewares.Recovery(middlewares.AuthMiddleware(rateLimiter(router))))
+	//middlewares chain
+	handler := middlewares.CORS(middlewares.RequireAPIKey(middlewares.Recovery(middlewares.AuthMiddleware(rateLimiter(router)))))
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
