@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar"
 import "react-circular-progressbar/dist/styles.css"
-import { FaCheckCircle, FaHome, FaRegClock, FaSpinner } from "react-icons/fa"
+import { FaCheckCircle, FaHome, FaSpinner } from "react-icons/fa"
 import { MdCancel } from "react-icons/md"
 import Loading from "../Loading"
 import { useNavigate } from "react-router-dom"
-import { useTheme } from "../../context/ThemeContext"
 import { decodeHtml } from "../../utils/utils"
+import { useUser } from "../../context/UserContext"
 
 const ResultSection = () => {
   const [attempts] = useState<any[]>(() => {
@@ -14,7 +14,8 @@ const ResultSection = () => {
     return storedArray ? JSON.parse(storedArray) : []
   })
   const [percentage, setPercentage] = useState<number>(0)
-  const { theme } = useTheme()
+  const [loading, setLoading] = useState<boolean>(true)
+  const { user } = useUser()
   const correctAnswers = JSON.parse(localStorage.getItem("flashquiz-quiz-score")!)
   const amountOfQuizzes = JSON.parse(localStorage.getItem("flashquiz-quiz-amount")!)
   const quizCategory = JSON.parse(localStorage.getItem("flashquiz-quiz-category")!)
@@ -22,6 +23,43 @@ const ResultSection = () => {
 
   const navigate = useNavigate()
   const firstAttempts = attempts.slice(0, 2)
+
+  useEffect(() => {
+    const uploaded = JSON.parse(localStorage.getItem("flashquiz-quiz-hasuploaded")!)
+    const token = JSON.parse(localStorage.getItem("flashquiz-web-token")!)
+    if (uploaded) return
+
+    const uploadQuiz = async () => {
+      try {
+        const res = await fetch("https://flashquiz-backend.onrender.com/api/quiz/upload", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "X-API-KEY": import.meta.env.VITE_X_API_KEY,
+          },
+          body: JSON.stringify({
+            user_id: user.userId,
+            category: quizCategory,
+            score: Math.round(target),
+            points: Math.round(target / 1.8)
+          })
+        })
+        const response = await res.json()
+
+        if (!res.ok) {
+          console.log(response.error)
+        }
+      } catch (err: any) {
+        console.log(err.message)
+      } finally {
+        setLoading(false)
+        localStorage.setItem("flashquiz-quiz-hasuploaded", JSON.stringify("hasuploaded"))
+      }
+    }
+
+    uploadQuiz()
+  }, [])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -60,10 +98,6 @@ const ResultSection = () => {
       return "Perfect"
     }
   }
-
-  const loading = false
-  const clockTheme = theme == "light" ? "rgb(76, 77, 78)" : "white"
-  const bookTheme = theme === "light" ? "black" : "white"
 
   const pageContent = loading ? (
     <Loading />
