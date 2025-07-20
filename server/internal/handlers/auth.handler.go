@@ -57,13 +57,12 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	/*create a row in the records table
-
+	//create a row in the records table
 	if _, err := database.DB.Exec("INSERT INTO records (user_id, quiz_completed, avg_score, rank, points) VALUES ($1, $2, $3, $4, $5)", userId, 0, 0, "Noob", 0); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		ErrorResponse(w, "Internal Server Error")
+		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error")
 		return
-	}*/
+	}
 
 	token, err := service.GenerateToken()
 	if err != nil {

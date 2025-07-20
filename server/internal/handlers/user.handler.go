@@ -34,7 +34,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var user models.UserResponse
-	err := database.DB.QueryRow("SELECT user_id, name, email, is_verified FROM users WHERE user_id = $1", userId).Scan(&user.UserId, &user.Name, &user.Email, &user.IsVerified)
+	err := database.DB.QueryRow("SELECT users.user_id, users.name, users.email, users.is_verified, records.quiz_completed, records.avg_score, records.rank, records.points FROM users JOIN records WHERE user_id = $1", userId).Scan(&user.UserId, &user.Name, &user.Email, &user.IsVerified)
 	if err != nil {
 		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error")
 		return
