@@ -30,8 +30,6 @@ const Page = () => {
     navigate("/new")
   }
 
-  console.log(user)
-
   return (
     <>
       <section className="p-2 mt-[70px]">
@@ -44,34 +42,34 @@ const Page = () => {
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
           <div>
             <h2 className="font-inter text-sm text-thinBlack dark:text-white">Quiz Completed</h2>
-            <p className="text-2xl font-bold">0</p>
+            <p className="text-2xl font-bold">{user.quizCompleted}</p>
           </div>
           <div>
-            <FaDatabase size={30} color="rgb(177, 170, 170)" />
+            <FaDatabase size={24} color="rgb(177, 170, 170)" />
           </div>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
           <div>
             <h2 className="font-inter text-sm text-thinBlack dark:text-white">Average Score</h2>
-            <p className="text-2xl font-bold">0%</p>
+            <p className="text-2xl font-bold">{user.averageScore}%</p>
           </div>
           <div>
-            <GrScorecard size={30} color="rgb(177, 170, 170)" />
+            <GrScorecard size={25} color="rgb(177, 170, 170)" />
           </div>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
           <div>
             <h2 className="font-inter text-sm text-thinBlack dark:text-white">Current Rank</h2>
-            <p className="text-2xl font-open font-bold">Noob</p>
+            <p className="text-2xl font-open font-bold">{user.rank}</p>
           </div>
           <div>
-            <GiProgression size={30} color="rgb(177, 170, 170)" />
+            <GiProgression size={25} color="rgb(177, 170, 170)" />
           </div>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
           <div>
             <h2 className="font-inter text-sm text-thinBlack dark:text-white">Total Points</h2>
-            <p className="text-2xl font-open font-bold">0</p>
+            <p className="text-2xl font-open font-bold">{user.totalPoints}</p>
           </div>
           <div>
             <PiCoinsFill size={30} color="rgb(177, 170, 170)" />

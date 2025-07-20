@@ -4,7 +4,11 @@ interface User {
   userId: string,
   name: string,
   email: string,
-  isVerified: boolean
+  isVerified: boolean,
+  quizCompleted: number,
+  averageScore: number,
+  rank: string,
+  totalPoints: number,
 }
 
 type initUserContext = {

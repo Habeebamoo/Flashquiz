@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { FaStopwatch } from "react-icons/fa"
 import { useTheme } from "../../context/ThemeContext"
 import QuizBox from "./QuizBox"
-import { shuffle } from "../../utils/utils"
+import { shuffle, uploadQuiz } from "../../utils/utils"
 import { useNavigate } from "react-router-dom"
 
 export interface OptionsAttempts {
@@ -35,6 +35,7 @@ const QuizSection = () => {
 
   if (timeLeft <= 0) {
     window.location.href = "/dashboard/result";
+    uploadQuiz()
   }
 
   const initOptions = [...currentQuiz.incorrect_answers]
@@ -81,6 +82,7 @@ const QuizSection = () => {
     setShowOptions(true)
     if (currentIndex + 1 == quizArray.length) {
       navigate("/dashboard/result")
+      uploadQuiz()
     }
     setCurrentIndex(currentIndex + 1)
   }
@@ -88,7 +90,6 @@ const QuizSection = () => {
   const hideOptions = () => {
     setShowOptions(false)
   }
-
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
