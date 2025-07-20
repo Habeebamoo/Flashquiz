@@ -104,7 +104,7 @@ const ResultSection = () => {
     }
   }
 
-  if (error) return <Error />
+  if (error) return <Error to="/dashboard" />
 
   const pageContent = loading ? (
     <Loading />

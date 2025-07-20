@@ -1,7 +1,7 @@
 import { IoMdWarning } from "react-icons/io"
 import { useNavigate } from "react-router-dom"
 
-const Error = () => {
+const Error = ({ to="/login" }: { to: string }) => {
   const navigate = useNavigate()
 
   return (
@@ -9,7 +9,7 @@ const Error = () => {
       <IoMdWarning size={50} />
       <h1 className="text-lg font-open mt-2">Unknown Error</h1>
       <p className="text-sm mb-2">An unexpected error occured</p>
-      <button onClick={() => navigate("/login")} className="btn-black mt-2">Go back</button>
+      <button onClick={() => navigate(to)} className="btn-black mt-2">Go back</button>
     </section>
   )
 }

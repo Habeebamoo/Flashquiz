@@ -78,15 +78,15 @@ func UploadQuiz(w http.ResponseWriter, r *http.Request) {
 	var averageScore int
 	var totalPoints int
 
-	//get averageScore
-	if err := database.DB.QueryRow("SELECT AVG(score) FROM quizzes WHERE user_id = $1", quizResult.UserId).Scan(&averageScore); err != nil {
-		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error: avgscore")
-		return
-	}
-
 	//update and get points
 	if err := database.DB.QueryRow("UPDATE records SET points = points + $1 WHERE user_id = $2 RETURNING points", quizResult.Points, quizResult.UserId).Scan(&totalPoints); err != nil {
 		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error: pts")
+		return
+	}
+
+	//get averageScore
+	if err := database.DB.QueryRow("SELECT AVG(score) FROM quizzes WHERE user_id = $1", quizResult.UserId).Scan(&averageScore); err != nil {
+		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error: avgscore")
 		return
 	}
 
