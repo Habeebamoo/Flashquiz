@@ -39,7 +39,7 @@ const ResultSection = () => {
             "X-API-KEY": import.meta.env.VITE_X_API_KEY,
           },
           body: JSON.stringify({
-            user_id: user.userId,
+            userId: user.userId,
             category: quizCategory,
             score: Math.round(target),
             points: Math.round(target / 1.8)
