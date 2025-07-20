@@ -6,6 +6,7 @@ import (
 	"flashquiz-server/internal/models"
 	"flashquiz-server/internal/service"
 	"io"
+	"math"
 	"net/http"
 	"time"
 )
@@ -75,7 +76,7 @@ func UploadQuiz(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var averageScore int
+	var averageScore float64
 	var totalPoints int
 
 	//update and get points
@@ -91,9 +92,10 @@ func UploadQuiz(w http.ResponseWriter, r *http.Request) {
 	}
 
 	newRank := service.GetRank(totalPoints)
+	intAvgScore := math.Round(averageScore)
 
 	//update records table
-	if _, err := database.DB.Exec("UPDATE records SET quiz_completed = quiz_completed + 1, avg_score = $1, rank = $2 WHERE user_id = $3", averageScore, newRank, quizResult.UserId); err != nil {
+	if _, err := database.DB.Exec("UPDATE records SET quiz_completed = quiz_completed + 1, avg_score = $1, rank = $2 WHERE user_id = $3", intAvgScore, newRank, quizResult.UserId); err != nil {
 		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error: recordsa")
 		return
 	}
