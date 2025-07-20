@@ -19,6 +19,7 @@ type UserResponse struct {
 	QuizCompleted  int     `json:"quizCompleted"`
 	AverageScore   int     `json:"averageScore"`
 	Rank           string  `json:"rank"`
+	TotalPoints    int     `json:"totalPoints"`
 }
 
 func (user *User) Validate() error {
