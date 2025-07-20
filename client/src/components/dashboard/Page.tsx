@@ -39,41 +39,33 @@ const Page = () => {
       </section>
       <div className="flex-center bg-white dark:bg-[#333] dark:text-white p-2 border-1 border-accentCold dark:border-[#444] mt-4 rounded-md w-[95%] mx-auto">Overview</div>
       <section className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-2 w-[95%] mx-auto">
-        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
-          <div>
+        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
+          <div className="flex-between">
             <h2 className="font-inter text-sm text-thinBlack dark:text-white">Quiz Completed</h2>
-            <p className="text-2xl font-bold">{user.quizCompleted}</p>
+            <FaDatabase size={18} color="rgb(177, 170, 170)" />
           </div>
-          <div>
-            <FaDatabase size={24} color="rgb(177, 170, 170)" />
-          </div>
+          <p className="text-2xl font-bold mt-1">{user.quizCompleted}</p>
         </div>
-        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
-          <div>
+        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
+          <div className="flex-between">
             <h2 className="font-inter text-sm text-thinBlack dark:text-white">Average Score</h2>
-            <p className="text-2xl font-bold">{user.averageScore}%</p>
+            <GrScorecard size={18} color="rgb(177, 170, 170)" />
           </div>
-          <div>
-            <GrScorecard size={25} color="rgb(177, 170, 170)" />
-          </div>
+          <p className="text-2xl font-bold mt-1">{user.averageScore}%</p>
         </div>
-        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
-          <div>
+        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
+          <div className="flex-between">
             <h2 className="font-inter text-sm text-thinBlack dark:text-white">Current Rank</h2>
-            <p className="text-2xl font-open font-bold">{user.rank}</p>
+            <GiProgression size={18} color="rgb(177, 170, 170)" />
           </div>
-          <div>
-            <GiProgression size={25} color="rgb(177, 170, 170)" />
-          </div>
+          <p className="text-2xl font-open font-bold mt-1">{user.rank}</p>
         </div>
-        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] flex-between">
-          <div>
+        <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
+          <div className="flex-between">
             <h2 className="font-inter text-sm text-thinBlack dark:text-white">Total Points</h2>
-            <p className="text-2xl font-open font-bold">{user.totalPoints}</p>
+            <PiCoinsFill size={20} color="rgb(177, 170, 170)" />
           </div>
-          <div>
-            <PiCoinsFill size={30} color="rgb(177, 170, 170)" />
-          </div>
+          <p className="text-2xl font-open font-bold mt-1">{user.totalPoints}</p>
         </div>
       </section>
 
