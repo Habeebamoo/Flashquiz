@@ -30,6 +30,8 @@ const Page = () => {
     navigate("/new")
   }
 
+  console.log(user)
+
   return (
     <>
       <section className="p-2 mt-[70px]">
