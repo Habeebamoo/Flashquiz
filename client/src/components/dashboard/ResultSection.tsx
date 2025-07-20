@@ -7,6 +7,7 @@ import Loading from "../Loading"
 import { useNavigate } from "react-router-dom"
 import { decodeHtml } from "../../utils/utils"
 import { useUser } from "../../context/UserContext"
+import Error from "./Error"
 
 const ResultSection = () => {
   const [attempts] = useState<any[]>(() => {
@@ -15,6 +16,7 @@ const ResultSection = () => {
   })
   const [percentage, setPercentage] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<boolean>(false)
   const { user } = useUser()
   const correctAnswers = JSON.parse(localStorage.getItem("flashquiz-quiz-score")!)
   const amountOfQuizzes = JSON.parse(localStorage.getItem("flashquiz-quiz-amount")!)
@@ -27,6 +29,8 @@ const ResultSection = () => {
   useEffect(() => {
     const uploaded = JSON.parse(localStorage.getItem("flashquiz-quiz-hasuploaded")!)
     const token = JSON.parse(localStorage.getItem("flashquiz-web-token")!)
+    setLoading(true)
+    setError(false)
     if (uploaded) return
 
     const uploadQuiz = async () => {
@@ -49,6 +53,7 @@ const ResultSection = () => {
 
         if (!res.ok) {
           console.log(response.error)
+          setError(true)
         }
       } catch (err: any) {
         console.log(err.message)
@@ -98,6 +103,8 @@ const ResultSection = () => {
       return "Perfect"
     }
   }
+
+  if (error) return <Error />
 
   const pageContent = loading ? (
     <Loading />

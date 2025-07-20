@@ -71,7 +71,7 @@ func UploadQuiz(w http.ResponseWriter, r *http.Request) {
 	//update quizzes table
 	_, err := database.DB.Exec("INSERT INTO quizzes (user_id, category, score, completed_at) VALUES ($1, $2, $3, $4)", quizResult.UserId, quizResult.Category, quizResult.Score, time.Now())
 	if err != nil {
-		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error")
+		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error: quiz")
 		return
 	}
 
@@ -80,13 +80,13 @@ func UploadQuiz(w http.ResponseWriter, r *http.Request) {
 
 	//get averageScore
 	if err := database.DB.QueryRow("SELECT AVG(score) FROM quizzes WHERE user_id = $1", quizResult.UserId).Scan(&averageScore); err != nil {
-		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error")
+		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error: avgscore")
 		return
 	}
 
 	//update and get points
 	if err := database.DB.QueryRow("UPDATE records SET points = points + $1 WHERE user_id = $2 RETURNING points", quizResult.Points, quizResult.UserId).Scan(&totalPoints); err != nil {
-		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error")
+		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error: pts")
 		return
 	}
 
@@ -94,7 +94,7 @@ func UploadQuiz(w http.ResponseWriter, r *http.Request) {
 
 	//update records table
 	if _, err := database.DB.Exec("UPDATE records SET quiz_completed = quiz_completed + 1, avg_score = $1, rank = $2 WHERE user_id = $3", averageScore, newRank, quizResult.UserId); err != nil {
-		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error")
+		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error: recordsa")
 		return
 	}
 
