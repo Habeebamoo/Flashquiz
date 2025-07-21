@@ -8,6 +8,7 @@ import Modal from "./Modal"
 import { useState } from "react"
 import { GiProgression } from "react-icons/gi"
 import { PiCoinsFill } from "react-icons/pi"
+import { FaBookOpen } from "react-icons/fa6"
 
 const Page = () => {
   const [modal, setModal] = useState<boolean>(false)
@@ -39,7 +40,10 @@ const Page = () => {
         <p className="text-secondary dark:text-white text-2xl mb-5">Welcome back, {capitalize(user.name)}</p>
         <button onClick={startQuiz} className="btn-black dark:btn-white">Start new Quiz</button>
       </section>
-      <div className="flex-center bg-white dark:bg-[#333] dark:text-white p-2 border-1 border-accentCold dark:border-[#444] mt-4 rounded-md w-[95%] mx-auto">Overview</div>
+      <div className="flex-center bg-white dark:bg-[#333] dark:text-white p-2 border-1 border-accentCold dark:border-[#444] mt-4 rounded-md w-[95%] mx-auto">
+        <FaBookOpen color="rgb(177, 170, 170)" />
+        <span className="ml-1">Overview</span>
+      </div>
       <section className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-2 w-[95%] mx-auto">
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
           <div className="flex-between">
