@@ -151,7 +151,7 @@ const ResultSection = () => {
             <div>
               <p className="text-secondary text-sm dark:text-white">Points Earned</p>
               <div className="flex-start">
-                <CiStar color="gold" size={20} />
+                <CiStar color="gold" size={25} />
                 <p className="ml-2 font-inter dark:text-white">{Math.round(percentage / 1.8)}</p>
               </div>
             </div>
