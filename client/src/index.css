@@ -80,10 +80,6 @@
   @apply w-full border-1 border-accentCold p-3 rounded-md focus:border-accentCold cursor-pointer mt-2;
 }
 
-.test {
-  color: rgb(29, 30, 31)
-}
-
 @theme {
   --font-inter: "inter";
   --font-open: "open";
@@ -95,4 +91,5 @@
   --color-accentLight: rgb(136, 136, 136);
   --color-accentXlight: rgb(247, 247, 247);
   --color-accentCold: rgb(240, 240, 240);
+  --color-accentTheme: rgb(177, 170, 170);
 }

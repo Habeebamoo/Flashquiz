@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaExclamationTriangle } from "react-icons/fa";
-import Footer from "../components/Footer";
+import Footer from "../components/home/Footer";
 
 export default function NotFound() {
   return (

@@ -1,9 +1,9 @@
 import { FaDatabase, FaTrophy } from "react-icons/fa"
 import { GrScorecard } from "react-icons/gr"
-import { IoIosArrowForward } from "react-icons/io"
+import ProgressBar from "@ramonak/react-progress-bar"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "../../context/UserContext"
-import { capitalize, clearLocalStorage } from "../../utils/utils"
+import { capitalize, clearLocalStorage, getLevelProgress, } from "../../utils/utils"
 import Modal from "./Modal"
 import { useState } from "react"
 import { GiProgression } from "react-icons/gi"
@@ -16,6 +16,8 @@ const Page = () => {
   const [modalBody, setModalBody] = useState<string>("")
   const { user } = useUser()
   const navigate = useNavigate()
+  const obj = getLevelProgress(user.rank)
+  const percent = ((user.totalPoints - obj.prev) / (obj.next - obj.prev)) * 100
 
   const startQuiz = () => {
     if (user.isVerified == false) {
@@ -41,28 +43,28 @@ const Page = () => {
       <section className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-2 w-[95%] mx-auto">
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
           <div className="flex-between">
-            <h2 className="font-inter text-sm text-thinBlack dark:text-white">Quiz Completed</h2>
+            <h2 className="font-inter text-sm text-thinBlack dark:text-accentTheme">Quiz Completed</h2>
             <FaDatabase size={18} color="rgb(177, 170, 170)" />
           </div>
           <p className="text-2xl font-bold mt-1">{user.quizCompleted}</p>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
           <div className="flex-between">
-            <h2 className="font-inter text-sm text-thinBlack dark:text-white">Average Score</h2>
+            <h2 className="font-inter text-sm text-thinBlack dark:text-accentTheme">Average Score</h2>
             <GrScorecard size={18} color="rgb(177, 170, 170)" />
           </div>
           <p className="text-2xl font-bold mt-1">{user.averageScore}%</p>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
           <div className="flex-between">
-            <h2 className="font-inter text-sm text-thinBlack dark:text-white">Current Rank</h2>
+            <h2 className="font-inter text-sm text-thinBlack dark:text-accentTheme">Current Rank</h2>
             <GiProgression size={18} color="rgb(177, 170, 170)" />
           </div>
           <p className="text-2xl font-open font-bold mt-1">{user.rank}</p>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
           <div className="flex-between">
-            <h2 className="font-inter text-sm text-thinBlack dark:text-white">Total Points</h2>
+            <h2 className="font-inter text-sm text-thinBlack dark:text-accentTheme">Total Points</h2>
             <PiCoinsFill size={20} color="rgb(177, 170, 170)" />
           </div>
           <p className="text-2xl font-open font-bold mt-1">{user.totalPoints}</p>
@@ -71,56 +73,31 @@ const Page = () => {
 
       <section className="bg-white dark:bg-[#333] dark:text-white p-4 border-1 border-accentCold dark:border-[#444] mt-4 rounded-md w-[95%] mx-auto">
         <h2 className="font-inter text-lg">Level Progress</h2>
-        <p className="text-sm text-secondary dark:text-accentLight">Level 0 - 0 points</p>
-        <div className="text-sm flex-between mt-3">
-          <p>Current: 0pts</p>
-          <p>Next Level: 100pts</p>
+        <p className="text-sm text-secondary dark:text-accentLight">Level {obj.level} - {user.totalPoints} points</p>
+        <div className="text-sm flex-between mt-3 mb-2">
+          <p>Current: {user.totalPoints}pts</p>
+          <p>Next Level: {obj.next}pts</p>
         </div>
-        <div className="bg-accent mt-2 rounded-full">
-          <div className="p-1 bg-black rounded-full w-[1%]"></div>
-        </div>
-        <p className="text-sm text-secondary dark:text-accentLight mt-2">100 points until level 1</p>
-      </section>
-
-      <section className="p-4 mb-2 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444] w-[95%] mx-auto mt-[20px]">
-        <div className="flex-between py-2 mb-1">
-          <div>
-            <h2 className="font-inter text-lg">Recent Quizzes</h2>
-            <p className="text-sm text-secondary dark:text-accentLight">Your latest quiz activities</p>
-          </div>
-          <div className="flex-end cursor-pointer">
-            <p className="mr-1 hover:text-secondary">View All</p>
-            <IoIosArrowForward />
-          </div>
-        </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-          <div className="flex-between border-b-1 border-b-accent sm:border-1 sm:border-accent dark:border-accentLight sm:px-2 sm:rounded-md pt-2 pb-3">
-            <div>
-              <h2 className="font-inter">Science</h2>
-              <p className="text-sm text-secondary dark:text-accentLight">Science - 8 min</p>
-            </div>
-            <div className="flex-end cursor-pointer">
-              <p className="mr-1 hover:text-secondary">85/100</p>
-              <IoIosArrowForward />
-            </div>
-          </div>
-          <div className="flex-between border-b-1 border-b-accent sm:border-1 sm:border-accent dark:border-accentLight sm:px-2 sm:rounded-md pt-2 pb-3">
-            <div>
-              <h2 className="font-inter">Mythology</h2>
-              <p className="text-sm text-secondary dark:text-accentLight">Mythology - 17 min</p>
-            </div>
-            <div className="flex-end cursor-pointer">
-              <p className="mr-1 hover:text-secondary">77/100</p>
-              <IoIosArrowForward />
-            </div>
-          </div>
-        </div>
+        <ProgressBar completed={percent} height="8px" bgColor="#000" isLabelVisible={false} />
+        <p className="text-sm text-secondary dark:text-accentLight mt-2">{obj.next - user.totalPoints} points until level {obj.level + 1}</p>
       </section>
 
       <section className="bg-white dark:bg-[#333] dark:text-white p-4 border-1 border-accentCold dark:border-[#444] mt-4 rounded-md w-[95%] mx-auto mb-4">
-        <FaTrophy className="mx-auto mb-1" size={40} color="gold" />
-        <h2 className="font-inter text-lg text-center">Leaderboard</h2>
-        <p className="text-sm text-secondary text-center dark:text-accentLight">coming soon...</p>
+        <FaTrophy className="mx-auto mb-1" size={40} color="rgb(177, 170, 170)" />
+        <h2 className="font-inter text-lg text-center mb-2">Leaderboard Coming Soon!</h2>
+        <p className="text-sm text-secondary text-center dark:text-accentLight max-sm:w-[80%] mx-auto">
+          We're working hard to bring you an exciting leaderboard feature where you can compete with the other platform members and see how you rank globally
+        </p>
+        <p className="text-sm text-black font-inter mt-4 mb-3 text-center dark:text-accentLight">What to expect.</p>
+        <p className="text-sm text-secondary text-center dark:text-accentLight max-sm:w-[80%] mx-auto mb-1">
+          Global ranking by points and perfomance
+        </p>
+        <p className="text-sm text-secondary text-center dark:text-accentLight max-sm:w-[80%] mx-auto mb-1">
+          Weekly and monthly leaderboard
+        </p>
+        <p className="text-sm text-secondary text-center dark:text-accentLight max-sm:w-[80%] mx-auto mb-1">
+          Special badges for top performers
+        </p>
       </section>
     </>
   )

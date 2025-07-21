@@ -80,25 +80,25 @@ func GetUrl(qForm *models.QForm) string {
 func GetRank(pts int) string {
 	var rank string
 
-	if pts > 5000 {
+	if pts >= 5000 {
 		rank = "Emperal"
-	} else if pts > 4000 {
+	} else if pts >= 4000 {
 		rank = "Grand Legend"
-	} else if pts > 3000 {
+	} else if pts >= 3000 {
 		rank = "Legend"
-	} else if pts > 2200 {
+	} else if pts >= 2200 {
 		rank = "Grand Master"
-	} else if pts > 1600 {
+	} else if pts >= 1600 {
 		rank = "Master"
-	} else if pts > 1100 {
+	} else if pts >= 1100 {
 		rank = "Expert"
-	} else if pts > 700 {
+	} else if pts >= 700 {
 		rank = "Scholar"
-	} else if pts > 400 {
+	} else if pts >= 400 {
 		rank = "Thinker"
-	} else if pts > 200 {
+	} else if pts >= 200 {
 		rank = "Learner"
-	} else if pts > 100 {
+	} else if pts >= 100 {
 		rank = "Beginner"
 	} else {
 		rank = "Noob"

@@ -1,7 +1,7 @@
 import Header from "../components/dashboard/DashHeader"
 import { Outlet } from "react-router-dom"
 import { useUser } from "../context/UserContext"
-import Loading from "../components/Loading"
+import Loading from "../components/dashboard/Loading"
 import Navbar from "../components/dashboard/Navbar"
 import { useState } from "react"
 

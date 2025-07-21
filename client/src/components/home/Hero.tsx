@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import logo from "../assets/hero.jpg"
+import logo from "../../assets/hero.jpg"
 import { FiArrowUpRight } from "react-icons/fi"
 
 const Hero = () => {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { FaCheckCircle } from "react-icons/fa"
 import { MdCancel } from "react-icons/md"
 import { useNavigate, useSearchParams } from "react-router-dom"
-import Loading from "../components/Loading"
+import Loading from "../components/dashboard/Loading"
 
 const Verify = () => {
   const [status, setStatus] = useState<"success" | "error" | "">("")

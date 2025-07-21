@@ -3,7 +3,7 @@ import { buildStyles, CircularProgressbar } from "react-circular-progressbar"
 import "react-circular-progressbar/dist/styles.css"
 import { FaCheckCircle, FaHome, FaSpinner } from "react-icons/fa"
 import { MdCancel } from "react-icons/md"
-import Loading from "../Loading"
+import Loading from "./Loading"
 import { useNavigate } from "react-router-dom"
 import { decodeHtml } from "../../utils/utils"
 import { useUser } from "../../context/UserContext"
@@ -31,7 +31,10 @@ const ResultSection = () => {
     const token = JSON.parse(localStorage.getItem("flashquiz-web-token")!)
     setLoading(true)
     setError(false)
-    if (uploaded) return
+    if (uploaded) {
+      setLoading(false)
+      return
+    }
 
     const uploadQuiz = async () => {
       try {

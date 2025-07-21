@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import logo from "../assets/logo.png"
+import logo from "../../assets/logo.png"
 import { FaArrowRightFromBracket } from "react-icons/fa6"
 
 const Header = () => {
