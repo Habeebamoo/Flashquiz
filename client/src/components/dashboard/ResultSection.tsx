@@ -44,7 +44,6 @@ const ResultSection = () => {
           },
           body: JSON.stringify({
             userId: user.userId,
-            category: quizCategory,
             score: Math.round(target),
             points: Math.round(target / 1.8)
           })

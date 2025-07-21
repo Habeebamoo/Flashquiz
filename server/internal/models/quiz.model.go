@@ -13,7 +13,6 @@ type QForm struct {
 
 type QResults struct {
 	UserId       string     `json:"userId"`
-	Category     string     `json:"category"`
 	Score        int        `json:"score"`
 	Points       int        `json:"points"`
 }
@@ -50,8 +49,6 @@ func (qRes *QResults) Validate() error {
 		return errors.New("user id is missing")
 	} else if qRes.Score < 0 {
 		return errors.New("score is missing")
-	} else if qRes.Category == "" {
-		return errors.New("category is missing")
 	} else if qRes.Points < 0 {
 		return errors.New("points is missing")
 	}

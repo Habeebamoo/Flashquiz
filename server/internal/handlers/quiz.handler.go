@@ -8,7 +8,6 @@ import (
 	"io"
 	"math"
 	"net/http"
-	"time"
 )
 
 func FetchQuiz(w http.ResponseWriter, r *http.Request) {
@@ -69,33 +68,21 @@ func UploadQuiz(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//update quizzes table
-	_, err := database.DB.Exec("INSERT INTO quizzes (user_id, category, score, completed_at) VALUES ($1, $2, $3, $4)", quizResult.UserId, quizResult.Category, quizResult.Score, time.Now())
-	if err != nil {
-		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error")
-		return
-	}
-
-	var averageScore float64
 	var totalPoints int
+	var amountQuizCompleted int
 
-	//update and get points
-	if err := database.DB.QueryRow("UPDATE records SET points = points + $1 WHERE user_id = $2 RETURNING points", quizResult.Points, quizResult.UserId).Scan(&totalPoints); err != nil {
-		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error")
-		return
-	}
-
-	//get averageScore
-	if err := database.DB.QueryRow("SELECT AVG(score) FROM quizzes WHERE user_id = $1", quizResult.UserId).Scan(&averageScore); err != nil {
+	//update and get points & quizCompleted
+	if err := database.DB.QueryRow("UPDATE records SET points = points + $1, quiz_completed = quiz_completed + 1 WHERE user_id = $2 RETURNING points, quiz_completed", quizResult.Points, quizResult.UserId).Scan(&totalPoints, &amountQuizCompleted); err != nil {
 		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error")
 		return
 	}
 
 	newRank := service.GetRank(totalPoints)
-	intAvgScore := math.Round(averageScore)
+	averageScoreFloat := float64(totalPoints / amountQuizCompleted) * 1.8
+	averageScore := math.Round(averageScoreFloat)
 
 	//update records table
-	if _, err := database.DB.Exec("UPDATE records SET quiz_completed = quiz_completed + 1, avg_score = $1, rank = $2 WHERE user_id = $3", intAvgScore, newRank, quizResult.UserId); err != nil {
+	if _, err := database.DB.Exec("UPDATE records SET avg_score = $1, rank = $2 WHERE user_id = $3", averageScore, newRank, quizResult.UserId); err != nil {
 		ErrorResponse(w, http.StatusInternalServerError, "Internal Server Error")
 		return
 	}
