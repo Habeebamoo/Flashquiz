@@ -3,6 +3,7 @@ import { buildStyles, CircularProgressbar } from "react-circular-progressbar"
 import "react-circular-progressbar/dist/styles.css"
 import { FaCheckCircle, FaHome, FaSpinner } from "react-icons/fa"
 import { MdCancel } from "react-icons/md"
+import { CiStar } from "react-icons/ci"
 import Loading from "./Loading"
 import { useNavigate } from "react-router-dom"
 import { decodeHtml } from "../../utils/utils"
@@ -145,6 +146,13 @@ const ResultSection = () => {
               <div className="flex-start">
                 <MdCancel color="red" size={20} />
                 <p className="ml-2 font-inter dark:text-white">{amountOfQuizzes - correctAnswers}/{amountOfQuizzes}</p>
+              </div>
+            </div>
+            <div>
+              <p className="text-secondary text-sm dark:text-white">Points Earned</p>
+              <div className="flex-start">
+                <CiStar color="gold" size={20} />
+                <p className="ml-2 font-inter dark:text-white">{Math.round(percentage / 1.8)}</p>
               </div>
             </div>
           </div>
