@@ -23,7 +23,7 @@ const Navbar = ({ setNavbar }: { setNavbar: React.Dispatch<React.SetStateAction<
         <p className="p-2 font-open dark:text-white cursor-pointer">Verify My Account</p>
         <div onClick={handleTheme} className="p-2 mt-5 flex-start cursor-pointer absolute bottom-0">
           {theme == "light" ? <FaMoon color={iconTheme} /> : <FaSun color={iconTheme} />}
-          <span className="ml-2 dark:text-white font-open">{theme === "light" ? "Light" : "Dark"}</span>
+          <span className="ml-2 dark:text-white font-open">{theme === "light" ? "Enable Dark Mode" : "Enable Light Mode"}</span>
         </div>
       </div>
 
