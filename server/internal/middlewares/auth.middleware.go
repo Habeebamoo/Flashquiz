@@ -40,7 +40,7 @@ func RequireAPIKey(next http.Handler) http.Handler {
 // middleware for JWT Auth
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path == "/api/auth/login" || r.URL.Path == "/api/auth/register" || r.URL.Path == "/api/user/verify" || r.URL.Path == "/api/user/forgot-password" || r.URL.Path == "/api/user/reset-password" || r.URL.Path == "/api" {
+		if r.URL.Path == "/api/auth/login" || r.URL.Path == "/api/auth/register" || r.URL.Path == "/api/user/verify" || r.URL.Path == "/api/user/password/forgot" || r.URL.Path == "/api/user/password/reset" || r.URL.Path == "/api" {
 			next.ServeHTTP(w, r)
 			return
 		}
