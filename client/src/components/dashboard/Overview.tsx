@@ -17,28 +17,28 @@ const OverviewTab = () => {
       <section className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-2 w-[95%] mx-auto">
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
           <div className="flex-between">
-            <h2 className="font-inter text-sm text-accentTheme">Quiz Completed</h2>
+            <h2 className="font-inter text-sm text-accentTheme dark:text-accentIcon">Quiz Completed</h2>
             <FaDatabase size={17} color="rgb(177, 170, 170)" />
           </div>
           <p className="text-2xl font-bold mt-1">{user.quizCompleted}</p>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
           <div className="flex-between">
-            <h2 className="font-inter text-sm text-accentTheme">Average Score</h2>
+            <h2 className="font-inter text-sm text-accentTheme dark:text-accentIcon">Average Score</h2>
             <GrScorecard size={18} color="rgb(177, 170, 170)" />
           </div>
           <p className="text-2xl font-bold mt-1">{user.averageScore}%</p>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
           <div className="flex-between">
-            <h2 className="font-inter text-sm text-accentTheme">{`Current Rank (lvl ${obj.level})`}</h2>
+            <h2 className="font-inter text-sm text-accentTheme dark:text-accentIcon">{`Current Rank (lvl ${obj.level})`}</h2>
             <GiProgression size={18} color="rgb(177, 170, 170)" />
           </div>
           <p className="text-2xl font-open font-bold mt-1">{user.rank}</p>
         </div>
         <div className="p-4 bg-white dark:bg-[#333] dark:text-white rounded-md border-1 border-accentCold dark:border-[#444]">
           <div className="flex-between">
-            <h2 className="font-inter text-sm text-accentTheme">Total Points</h2>
+            <h2 className="font-inter text-sm text-accentTheme dark:text-accentIcon">Total Points</h2>
             <PiCoinsFill size={20} color="rgb(177, 170, 170)" />
           </div>
           <p className="text-2xl font-open font-bold mt-1">{user.totalPoints}</p>
