@@ -29,10 +29,16 @@ const ResultSection = () => {
 
   useEffect(() => {
     const uploaded = JSON.parse(localStorage.getItem("flashquiz-quiz-hasuploaded")!)
+    const quizExist = JSON.parse(localStorage.getItem("flashquiz-quizzes")!)
     const token = JSON.parse(localStorage.getItem("flashquiz-web-token")!)
     setLoading(true)
     setError(false)
     if (uploaded) {
+      setLoading(false)
+      return
+    }
+
+    if (!quizExist) {
       setLoading(false)
       return
     }
