@@ -4,7 +4,7 @@ import { capitalize, clearLocalStorage } from "../../utils/utils"
 import Modal from "./Modal"
 import { useState } from "react"
 import { FaBookOpen } from "react-icons/fa6"
-import OverviewTab from "./overviewTab"
+import OverviewTab from "./Overview"
 import ProgressionTab from "./ProgressionTab"
 import { GiProgression } from "react-icons/gi"
 
