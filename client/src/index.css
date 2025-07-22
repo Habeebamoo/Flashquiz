@@ -91,5 +91,5 @@
   --color-accentLight: rgb(136, 136, 136);
   --color-accentXlight: rgb(247, 247, 247);
   --color-accentCold: rgb(240, 240, 240);
-  --color-accentTheme: rgb(177, 170, 170);
+  --color-accentTheme: rgba(151, 145, 145, 1);
 }
