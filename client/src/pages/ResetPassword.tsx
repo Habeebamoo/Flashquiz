@@ -29,7 +29,7 @@ const Page = () => {
     }
 
     try {
-      const res = await fetch(`https://flashquiz-backend.onrender.com/api/user/reset-password?token=${token}`, {
+      const res = await fetch(`https://flashquiz-backend.onrender.com/api/user/password/reset?token=${token}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

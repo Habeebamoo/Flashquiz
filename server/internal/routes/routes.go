@@ -16,8 +16,8 @@ func SetUpRoutes() *http.ServeMux {
 	r.HandleFunc("/api/user/me", handlers.GetUser)
 	r.HandleFunc("/api/user/verify", handlers.VerifyUser)
 	r.HandleFunc("/api/user/resend-verification", handlers.ResendEmailVerification)
-	r.HandleFunc("/api/user/forgot-password", handlers.ForgotPassword)
-	r.HandleFunc("/api/user/reset-password", handlers.ResetPassword)
+	r.HandleFunc("/api/user/password/forgot", handlers.ForgotPassword)
+	r.HandleFunc("/api/user/password/reset", handlers.ResetPassword)
 
 	//quiz routes
 	r.HandleFunc("/api/quiz", handlers.FetchQuiz)
