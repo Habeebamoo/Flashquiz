@@ -3,10 +3,10 @@
 A customizable Quiz application that brings trivia and joy
 
 ## 🚀 Features
-- Customizable quiz settings (category, difficulty, number of questions)
+- Customizable quiz settings (category, difficulty, etc..)
 - Detailed User Statistics and Quiz progress
-- Satisfying User Experince UX
-- Secure user details and credentials
+- Dynamic user ranking system 
+- Secured with (jwt tokens, API keys)
 - All time Leaderboard
 
 ## 🛠️ Tech Stack
