@@ -1,11 +1,12 @@
 package service
 
 import (
-	"crypto/rand"
+	crand "crypto/rand"
 	"encoding/hex"
 	"fmt"
 	"os"
 	"time"
+	mrand "math/rand"
 
 	"flashquiz-server/internal/models"
 	"github.com/golang-jwt/jwt/v5"
@@ -27,7 +28,7 @@ func Verify(hashedPassword, password string) error {
 
 func GenerateToken() (string, error) {
 	bytes := make([]byte, 16)
-	_, err := rand.Read(bytes)
+	_, err := crand.Read(bytes)
 	if err != nil {
 		return "", err
 	}
@@ -48,8 +49,8 @@ func GetUrl(qForm *models.QForm) string {
 	var category int
 
 	amount := qForm.Amount
-	difficulty := qForm.Difficulty
-	qType := qForm.Type
+	difficulty := []string{"easy", "medium"}[mrand.Intn(2)]
+	qType := []string{"boolean", "multiple"}[mrand.Intn(2)]
 
 	switch qForm.Category {
 	case "Science":

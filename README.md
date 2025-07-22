@@ -3,7 +3,6 @@
 A customizable Quiz application that brings trivia and joy
 
 ## 🚀 Features
-- Customizable quiz settings (category, difficulty, etc..)
 - Detailed User Statistics and Quiz progress
 - Dynamic user ranking system 
 - Secured with (jwt tokens, API keys)

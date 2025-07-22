@@ -8,9 +8,7 @@ const NewQuiz = () => {
   const [form, setForm] = useState({
     category: "Science",
     time: 30,
-    difficulty: "easy",
     amount: 10,
-    type: "multiple"
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,8 +29,6 @@ const NewQuiz = () => {
         body: JSON.stringify({
           category: form.category,
           amount: form.amount,
-          difficulty: form.difficulty,
-          type: form.type
         })
       })
       const response = await res.json()
@@ -59,7 +55,8 @@ const NewQuiz = () => {
     <main>
       <section className="flex-center bg-accentXlight dark:bg-[#222] h-[100vh]">
         <form onSubmit={handleSubmit} className="bg-white dark:bg-[#333] p-3 border-1 border-accentCold dark:border-[#444] rounded-md w-[90%] sm:w-[400px] rounded-md">
-          <h1 className="text-center font-inter dark:text-white text-lg py-3">Select your Preference</h1>
+          <h1 className="text-center font-inter dark:text-white text-lg mt-3">Select your Preference</h1>
+          <p className="text-sm text-secondary mt-1 text-center mb-5">The Quiz difficulty and option type will be selected automatically for you</p>
           <div className="p-2">
             <label htmlFor="category" className="font-inter dark:text-white">Category</label>
             <select
@@ -99,21 +96,6 @@ const NewQuiz = () => {
             </select>
           </div>
           <div className="p-2">
-            <label htmlFor="difficulty" className="font-inter dark:text-white">Difficulty</label>
-            <select
-              name="difficulty"
-              id="difficulty"
-              className="input dark:border-[#555] dark:bg-white"
-              value={form.difficulty}
-              onChange={(e) => setForm(prev => ({ ...prev, difficulty: e.target.value }))}
-              required
-            >
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="Hard">Hard</option>
-            </select>
-          </div>
-          <div className="p-2">
             <label htmlFor="amount" className="font-inter dark:text-white">Amount</label>
             <input
               type="number"
@@ -126,20 +108,6 @@ const NewQuiz = () => {
               onChange={(e) => setForm(prev => ({ ...prev, amount: Number(e.target.value) }))}
               required
             />
-          </div>
-          <div className="p-2">
-            <label htmlFor="type" className="font-inter dark:text-white">Option Type</label>
-            <select
-              name="type"
-              id="type"
-              value={form.type}
-              className="input dark:border-[#555] dark:bg-white"
-              onChange={(e) => setForm(prev => ({ ...prev, type: e.target.value }))}
-              required
-            >
-              <option value="boolean">True or False</option>
-              <option value="multiple">4 Options</option>
-            </select>
           </div>
           {errorMessage && <p className="my-2 text-red-500 font-open text-center">Something went wrong</p>}
           <div className="p-2">

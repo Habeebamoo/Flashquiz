@@ -72,7 +72,7 @@ const ProgressionTab = () => {
           </div>
           <div className="py-2 px-4 border-1 border-blue-200 dark:border-[#555] rounded-sm bg-blue-100 dark:bg-[#444]">
             <div className="flex-start">
-              <FaGraduationCap size={20} color="rgba(243, 112, 72, 1)" />
+              <FaGraduationCap size={25} color="rgba(243, 112, 72, 1)" />
               <div className="ml-4">
                 <h2 className="font-inter text-lg dark:text-white">Scholar</h2>
                 <p className="text-sm text-secondary dark:text-white">Gaining mastery and concept with consistent effort</p>
