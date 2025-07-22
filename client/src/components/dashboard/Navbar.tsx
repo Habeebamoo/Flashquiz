@@ -81,7 +81,7 @@ const Navbar = ({ setNavbar }: { setNavbar: React.Dispatch<React.SetStateAction<
 
       <div className="bg-white dark:bg-[#333] max-sm:h-[17vh] p-2 fixed bottom-0 left-0 right-0 rounded-t-xl sm:hidden">
         <div className="flex-end">
-          <MdCancel color={iconTheme} size={20} onClick={() => setNavbar(false)} className="cursor-pointer" />
+          <MdCancel color={iconTheme} size={25} onClick={() => setNavbar(false)} className="cursor-pointer" />
         </div>
         <div onClick={sendEmail} className="flex-start p-2">
           <LiaUserCheckSolid color={iconTheme} />
