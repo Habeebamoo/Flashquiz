@@ -38,11 +38,11 @@ const Page = () => {
         <button onClick={startQuiz} className="btn-black dark:btn-white">Start new Quiz</button>
       </section>
       <div className="flex-center bg-accent dark:bg-[#333] dark:text-white p-1 mt-4 rounded-md w-[95%] mx-auto grid grid-cols-2 gap-1">
-        <div onClick={() => setTab("overview")} className={`flex-center cursor-pointer ${tab === "overview" && "bg-white dark:text-black"} rounded-sm`}>
+        <div onClick={() => setTab("overview")} className={`flex-center p-1 cursor-pointer ${tab === "overview" && "bg-white dark:text-black"} rounded-sm`}>
           <FaBookOpen size={12} color="rgba(98, 104, 160, 1)" />
           <span className="ml-1 text-sm">Overview</span>
         </div>
-        <div onClick={() => setTab("progression")} className={`flex-center cursor-pointer ${tab === "progression" && "bg-white dark:text-black"} rounded-sm`}>
+        <div onClick={() => setTab("progression")} className={`flex-center p-1 cursor-pointer ${tab === "progression" && "bg-white dark:text-black"} rounded-sm`}>
           <GiProgression size={12} color="rgba(98, 104, 160, 1)" />
           <span className="ml-1 text-sm">Progression</span>
         </div>

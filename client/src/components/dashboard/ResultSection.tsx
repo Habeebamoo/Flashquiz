@@ -26,6 +26,7 @@ const ResultSection = () => {
 
   const navigate = useNavigate()
   const firstAttempts = attempts.slice(0, 2)
+  const points = target >= 50 ? Math.round(target / 1.8) : 0
 
   useEffect(() => {
     const uploaded = JSON.parse(localStorage.getItem("flashquiz-quiz-hasuploaded")!)
@@ -55,7 +56,7 @@ const ResultSection = () => {
           body: JSON.stringify({
             userId: user.userId,
             score: Math.round(target),
-            points: Math.round(target / 1.8)
+            points: points
           })
         })
         const response = await res.json()
@@ -158,7 +159,7 @@ const ResultSection = () => {
               <p className="text-secondary text-sm dark:text-white">Points Earned</p>
               <div className="flex-start">
                 <CiStar color="gold" size={25} />
-                <p className="ml-2 font-inter dark:text-white">{Math.round(percentage / 1.8)}</p>
+                <p className="ml-2 font-inter dark:text-white">{points}</p>
               </div>
             </div>
           </div>

@@ -37,13 +37,14 @@ const Navbar = ({ setNavbar }: { setNavbar: React.Dispatch<React.SetStateAction<
           userId: user.userId
         })
       })
+      const response = await res.json()
 
       if (res.ok) {
-        setMsg("Sent")
+        setMsg(response.message)
         setStatus("success")
       } else {
-        setMsg("Error")
-        setMsg("Error")
+        setMsg(response.error)
+        setStatus("error")
       }
     } catch (err) {
       setStatus("error")
@@ -59,11 +60,11 @@ const Navbar = ({ setNavbar }: { setNavbar: React.Dispatch<React.SetStateAction<
        <div className="flex-end mb-6">
           <MdCancel color={iconTheme} size={20} onClick={() => setNavbar(false)} className="cursor-pointer" />
         </div>
-        <div onClick={sendEmail} className="flex-start">
+        <div onClick={sendEmail} className="flex-start p-2">
           <LiaUserCheckSolid color={iconTheme} />
-          <p className="p-2 font-open dark:text-white cursor-pointer">Verify My Account</p>
+          <p className="font-open dark:text-white cursor-pointer ml-1">Verify My Account</p>
         </div>
-        {loading && <p className="text-sm text-secondary">Loading...</p>}
+        {loading && <p className="text-sm px-2 text-secondary">Loading...</p>}
         {status &&
           <div className="flex-start">
             <span className={`mr-1 ${status === "success" ? "text-green-500" : "text-red-500"}`}>{msg}</span>
@@ -80,11 +81,11 @@ const Navbar = ({ setNavbar }: { setNavbar: React.Dispatch<React.SetStateAction<
         <div className="flex-end">
           <MdCancel color={iconTheme} size={20} onClick={() => setNavbar(false)} className="cursor-pointer" />
         </div>
-        <div onClick={sendEmail} className="flex-start">
+        <div onClick={sendEmail} className="flex-start p-2">
           <LiaUserCheckSolid color={iconTheme} />
-          <p className="p-2 font-open dark:text-white cursor-pointer">Verify My Account</p>
+          <p className="font-open dark:text-white cursor-pointer ml-1">Verify My Account</p>
         </div>
-        {loading && <p className="text-sm text-secondary">Loading...</p>}
+        {loading && <p className="text-sm px-2 text-secondary">Loading...</p>}
         {status &&
           <div className="flex-start">
             <span className={`mr-1 ${status === "success" ? "text-green-500" : "text-red-500"}`}>{msg}</span>

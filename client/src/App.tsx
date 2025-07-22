@@ -28,16 +28,16 @@ export default function App() {
       <>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<AuthPage />} />
-        <Route path="/dashboard" element={token ? <Dashboard /> : <Navigate to={"/login"} />} errorElement={<ErrorScreen />}>
+        <Route path="/dashboard" element={token ? <Dashboard /> : <Navigate to={"/login"} />} errorElement={<ErrorScreen to="/login" />}>
           <Route path="" element={<DashboardPage />} />
           <Route path="result" element={<ResultSection />} />
           <Route path="answers" element={<Reviews />} />
         </Route>
-        <Route path="/new" element={token ? <NewQuiz /> : <Navigate to={"/login"} />} errorElement={<ErrorScreen />} />
-        <Route path="/quiz" element={token ? <Quiz /> : <Navigate to={"/login"} />} errorElement={<ErrorScreen />} />
+        <Route path="/new" element={token ? <NewQuiz /> : <Navigate to={"/login"} />} errorElement={<ErrorScreen to="/dashboard" />} />
+        <Route path="/quiz" element={token ? <Quiz /> : <Navigate to={"/login"} />} errorElement={<ErrorScreen to="/dashboard" />} />
         <Route path="/verify" element={<VerifyPage />} />
         <Route path="/forgot" element={<ForgotPage />} />
-        <Route path="/reset-password" element={<ResetPage />} />
+        <Route path="/reset" element={<ResetPage />} />
         <Route path="*" element={<NotFound />} />
       </>
     )

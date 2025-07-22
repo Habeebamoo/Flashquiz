@@ -132,7 +132,7 @@ func ResendEmailVerification(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if isVerified {
-		JsonResponse(w, http.StatusOK, "Your account is already verified")
+		JsonResponse(w, http.StatusOK, "Account Verified")
 		return
 	}
 
@@ -145,7 +145,7 @@ func ResendEmailVerification(w http.ResponseWriter, r *http.Request) {
 
 	//sends email message
 	go ResendVerification(email, name, token)
-	JsonResponse(w, http.StatusOK, "Verification Email Sent")
+	JsonResponse(w, http.StatusOK, "Email Sent")
 }
 
 func ForgotPassword(w http.ResponseWriter, r *http.Request) {

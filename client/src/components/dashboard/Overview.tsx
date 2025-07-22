@@ -57,8 +57,10 @@ const OverviewTab = () => {
       </section>
 
       <section className="bg-white dark:bg-[#333] dark:text-white p-6 border-1 border-accentCold dark:border-[#444] mt-4 rounded-md w-[95%] mx-auto mb-4">
-        <FaTrophy className="mx-auto mb-1" size={50} color="rgba(98, 104, 160, 1)" />
-        <h2 className="font-inter text-lg text-center mt-2 mb-2">Leaderboard Coming Soon!</h2>
+        <div className="h-[60px] w-[60px] bg-trophy flex-center mx-auto rounded-full">
+          <FaTrophy className="mx-auto mb-1 mt-1" size={30} color="white" />
+        </div>
+        <h2 className="font-inter text-lg text-center mt-3 mb-2">Leaderboard Coming Soon!</h2>
         <p className="text-sm text-secondary text-center dark:text-accentLight max-sm:w-[80%] mx-auto">
           We're working hard to bring you an exciting leaderboard feature where you can compete with the other platform members and see how you rank globally
         </p>

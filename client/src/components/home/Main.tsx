@@ -59,7 +59,7 @@ const Main = () => {
       </div>
       <div>
         <div className="flex-center">
-          <h1 className="text-lg font-inter text-center mt-6 mb-1 bg-blue-400 py-1 px-3 text-white rounded-md">Featured Quiz</h1>
+          <h1 className="text-lg font-inter text-center mt-6 mb-1 bg-blue-400 py-1 px-3 text-white rounded-md">Quiz Categories</h1>
         </div>
         <p className="text-secondary mb-4 text-center font-open">Explore our most popular and trending quiz</p>
 

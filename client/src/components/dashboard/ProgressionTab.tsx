@@ -94,7 +94,7 @@ const ProgressionTab = () => {
             <div className="flex-start">
               <FaChessKnight size={20} color="rgba(98, 104, 160, 1)" />
               <div className="ml-4">
-                <h2 className="font-inter v dark:text-white">Master</h2>
+                <h2 className="font-inter text-lg dark:text-white">Master</h2>
                 <p className="text-sm text-secondary dark:text-white">Respected and precise - a true problem solver</p>
                 <p className="text-sm text-secondary dark:text-white">1600 - 2200 points</p>
               </div>
