@@ -55,18 +55,18 @@ const Page = () => {
   }
 
   return (
-    <section className="flex-center bg-accentXlight dark:bg-[#111] h-[100vh]">
-      <form onSubmit={handleSubmit} className="bg-white dark:bg-[#333] px-6 py-10 border-1 border-accentCold dark:border-[#444] rounded-md w-[90%] sm:w-[400px] rounded-md">
+    <section className="flex-center bg-accentXlight h-[100vh]">
+      <form onSubmit={handleSubmit} className="bg-white px-6 py-10 border-1 border-accentCold rounded-md w-[90%] sm:w-[400px] rounded-md">
         <h1 className="font-inter text-2xl text-center">Forgot Password</h1>
         <p className="text-sm text-secondary text-center mb-6 mt-1">Input your email address to proceed to your account revovery</p>
         <div className=" mt-1 mb-3">
-          <label htmlFor="email" className="font-inter dark:text-white">Email</label>
+          <label htmlFor="email" className="font-inter">Email</label>
           <div className="relative">
             <input
               type="email"
               name="email"
               id="email"
-              className="pl-11 input dark:border-[#555] dark:bg-white"
+              className="pl-11 input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

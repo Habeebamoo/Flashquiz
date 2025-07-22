@@ -174,7 +174,6 @@ const ResultSection = () => {
             </button>
           </div>
         </div>
-
         <div className="bg-white dark:bg-[#333] rounded-md border-1 border-accentCold dark:border-[#444] p-6 mb-3">
           <h1 className="font-inter text-xl dark:text-white">Review Incorrect Answers</h1>
           <p className="text-secondary dark:text-white text-sm">Learn from your mistakes and improve next time</p>

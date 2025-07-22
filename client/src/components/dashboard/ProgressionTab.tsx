@@ -2,7 +2,7 @@ import ProgressBar from "@ramonak/react-progress-bar"
 import { getLevelProgress, getNextRankTo } from "../../utils/utils"
 import { useUser } from "../../context/UserContext"
 import { PiMedalFill } from "react-icons/pi"
-import { FaBook, FaBrain, FaChessKing, FaChessKnight, FaCrown, FaDragon, FaGear, FaGraduationCap, FaSeedling, FaStar, FaTrophy, FaUser } from "react-icons/fa6"
+import { FaBook, FaBrain, FaChessKing, FaChessKnight, FaCrown, FaDragon, FaGear, FaGraduationCap, FaSeedling, FaStar, FaUser } from "react-icons/fa6"
 
 const ProgressionTab = () => {
   const { user } = useUser()

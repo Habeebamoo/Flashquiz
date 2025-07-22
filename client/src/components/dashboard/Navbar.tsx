@@ -23,6 +23,8 @@ const Navbar = ({ setNavbar }: { setNavbar: React.Dispatch<React.SetStateAction<
 
   const sendEmail = async () => {
     setLoading(true)
+    setMsg("")
+    setStatus("")
     const token = JSON.parse(localStorage.getItem("flashquiz-web-token")!)
 
     try {
@@ -66,7 +68,7 @@ const Navbar = ({ setNavbar }: { setNavbar: React.Dispatch<React.SetStateAction<
         </div>
         {loading && <p className="text-sm px-2 text-secondary">Loading...</p>}
         {status &&
-          <div className="flex-start">
+          <div className="flex-start px-2">
             <span className={`mr-1 ${status === "success" ? "text-green-500" : "text-red-500"}`}>{msg}</span>
             {status === "success" ? <FaCheckCircle color="green" size={12} /> : <MdCancel color="red" size={15} /> }
           </div>
@@ -87,7 +89,7 @@ const Navbar = ({ setNavbar }: { setNavbar: React.Dispatch<React.SetStateAction<
         </div>
         {loading && <p className="text-sm px-2 text-secondary">Loading...</p>}
         {status &&
-          <div className="flex-start">
+          <div className="flex-start px-2">
             <span className={`mr-1 ${status === "success" ? "text-green-500" : "text-red-500"}`}>{msg}</span>
             {status === "success" ? <FaCheckCircle color="green" size={12} /> : <MdCancel color="red" size={15} /> }
           </div>

@@ -2,11 +2,13 @@ import React, { useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { useSearchParams } from "react-router-dom"
 import { CiLock } from "react-icons/ci"
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6"
 
 const Page = () => {
   const [searchParams] = useSearchParams()
   const [message, setMessage] = useState<string>("")
   const [status, setStatus] = useState<"success" | "error" | "">("")
+  const [showPassword, setShowPassword] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
   const [form, setForm] = useState({
     password: "",
@@ -59,6 +61,21 @@ const Page = () => {
     }
   }
 
+  const icon = showPassword ?
+    <FaRegEyeSlash
+      size={20}
+      color="rgb(177, 170, 170)"
+
+    /> :
+    <FaRegEye
+      size={20}
+      color="rgb(177, 170, 170)"
+    />
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword)
+  }
+
   return (
     <section className="flex-center bg-accentXlight h-[100vh]">
       <form onSubmit={handleSubmit} className="bg-white px-6 py-10 border-1 border-accentCold rounded-md w-[90%] sm:w-[400px] rounded-md">
@@ -68,7 +85,7 @@ const Page = () => {
           <label htmlFor="password" className="font-inter">New Password</label>
           <div className="relative">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               id="password"
               value={form.password}
@@ -77,13 +94,14 @@ const Page = () => {
               required
             />
             <CiLock size={30} color="rgb(177, 170, 170)" className="absolute top-[18px] left-[9px]" />
+            <div className="cursor-pointer absolute top-[23px] right-[11px]" onClick={togglePassword}>{icon}</div>
           </div>
         </div>
         <div className=" mt-1 mb-3">
           <label htmlFor="c_password" className="font-inter">Confirm Password</label>
           <div className="relative">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="c_password"
               id="c_password"
               value={form.confirmPassword}

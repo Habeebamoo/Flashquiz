@@ -48,7 +48,7 @@ func main() {
 
 	go func() {
 		if err := srv.ListenAndServe(); err != nil && err == http.ErrServerClosed {
-			log.Fatal("Server Error", err)
+			log.Fatal("Server Error ", err)
 		}
 	}()
 

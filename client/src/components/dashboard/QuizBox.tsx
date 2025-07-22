@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { decodeHtml } from "../../utils/utils"
 import { OptionsAttempts } from "./QuizSection"
 
@@ -20,7 +19,6 @@ const QuizBox = ({ options, currentQuiz, showOptions, close, currentIndex, setOp
     }
     close()
   }
-
 
   return (
     <>
