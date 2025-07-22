@@ -55,8 +55,7 @@ const NewQuiz = () => {
     <main>
       <section className="flex-center bg-accentXlight dark:bg-[#222] h-[100vh]">
         <form onSubmit={handleSubmit} className="bg-white dark:bg-[#333] p-3 border-1 border-accentCold dark:border-[#444] rounded-md w-[90%] sm:w-[400px] rounded-md">
-          <h1 className="text-center font-inter dark:text-white text-lg mt-3">Select your Preference</h1>
-          <p className="text-sm text-secondary mt-1 text-center mb-5">The Quiz difficulty and option type will be selected automatically for you</p>
+          <h1 className="text-center font-inter dark:text-white text-lg my-3">Select your Preference</h1>
           <div className="p-2">
             <label htmlFor="category" className="font-inter dark:text-white">Category</label>
             <select
