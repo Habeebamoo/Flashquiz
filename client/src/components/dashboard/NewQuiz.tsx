@@ -1,10 +1,13 @@
 import React, { useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { clearLocalStorage } from "../../utils/utils"
+import { useUser } from "../../context/UserContext"
 
 const NewQuiz = () => {
   const [loading, setLoading] = useState<boolean>(false)
-  const [errorMessage, setErrorMessage] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
+  const [msg, setMsg] = useState<string>("")
+  const { user } = useUser()
   const [form, setForm] = useState({
     category: "Science",
     time: 30,
@@ -15,7 +18,12 @@ const NewQuiz = () => {
     e.preventDefault()
     clearLocalStorage()
     setLoading(true)
-    setErrorMessage(false)
+    setError(false)
+    if (!user.isVerified) {
+      setError(true)
+      setMsg("Verify your account to proceed")
+      return
+    }
     const token = JSON.parse(localStorage.getItem("flashquiz-web-token")!)
 
     try {
@@ -42,10 +50,12 @@ const NewQuiz = () => {
           window.location.href = "/quiz"
         }, 1000)
       } else {
-        setErrorMessage(true)
+        setError(true)
+        setMsg("Something went wrong")
       }
     } catch (err) {
-      setErrorMessage(true)
+      setError(true)
+      setMsg("Something went wrong")
     } finally {
       setLoading(false)
     }
@@ -108,7 +118,7 @@ const NewQuiz = () => {
               required
             />
           </div>
-          {errorMessage && <p className="my-2 text-red-500 font-open text-center">Something went wrong</p>}
+          {error && <p className="my-2 text-red-500 font-open text-center">{msg}</p>}
           <div className="p-2">
             <button disabled={loading} className="w-full mt-1 py-3 btn-black disabled:cursor-not-allowed disabled:opacity-40 flex-center">{loading ? <ClipLoader size={22} color="#fff" /> : "Start Quiz"}</button>
           </div>
