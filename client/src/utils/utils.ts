@@ -49,7 +49,7 @@ export const getNextRankTo = (rank: string) => {
 
 export const getLevelProgress = (rank: string) => {
   const levels: Record<string, Record<string, number>> = {
-    "Noob": { "prev": 0, "next": 0, "level": 0, "nextLevel": 1 },
+    "Noob": { "prev": 0, "next": 100, "level": 0, "nextLevel": 1 },
     "Beginner": { "prev": 100, "next": 200, "level": 1, "nextLevel": 2 },
     "Learner": { "prev": 200, "next": 400, "level": 2, "nextLevel": 3 },
     "Thinker": { "prev": 400, "next": 700, "level": 3, "nextLevel": 4 },
