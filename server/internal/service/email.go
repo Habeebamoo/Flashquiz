@@ -11,7 +11,7 @@ import (
 func SendPasswordResetLink(userEmail, userName, token string) error {
 	m := gomail.NewMessage()
 
-	m.SetHeader("From", "flashquizweb@gmail.com")
+	m.SetHeader("From", m.FormatAddress("flashquizweb@gmail.com", "FlashQuiz"))
 	m.SetHeader("To", userEmail)
 	m.SetHeader("Subject", "Reset Your Password")
 
@@ -94,7 +94,7 @@ func SendPasswordResetLink(userEmail, userName, token string) error {
 func SendVerification(userEmail, userName, token string) error {
 	m := gomail.NewMessage()
 
-	m.SetHeader("From", "flashquizweb@gmail.com")
+	m.SetHeader("From", m.FormatAddress("flashquizweb@gmail.com", "FlashQuiz"))
 	m.SetHeader("To", userEmail)
 	m.SetHeader("Subject", "Verify your FlashQuiz account.")
 
@@ -177,7 +177,7 @@ func SendVerification(userEmail, userName, token string) error {
 func ResendVerification(userEmail, userName, token string) error {
 	m := gomail.NewMessage()
 
-	m.SetHeader("From", "flashquizweb@gmail.com")
+	m.SetHeader("From", m.FormatAddress("flashquizweb@gmail.com", "Habeeb from FlashQuiz"))
 	m.SetHeader("To", userEmail)
 	m.SetHeader("Subject", "Verify your FlashQuiz account.")
 	
