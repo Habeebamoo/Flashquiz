@@ -95,6 +95,8 @@ const AuthPage = () => {
   }
 
   const handleAuthType = () => {
+    if (authenticating) return;
+    
     setStatus("")
     setMessage("")
     setIsLogin(!isLogin)
